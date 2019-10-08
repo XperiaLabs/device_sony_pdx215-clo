@@ -325,11 +325,6 @@ PRODUCT_PACKAGES += \
     vendor.semc.hardware.display@2.3.vendor \
     vendor.semc.hardware.display@2.4.vendor
 
-# Shim
-PRODUCT_PACKAGES += \
-    android.hardware.light-V1-ndk_platform.vendor \
-    android.hidl.base@1.0.vendor
-
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti
