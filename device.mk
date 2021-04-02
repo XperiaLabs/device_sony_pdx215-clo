@@ -98,6 +98,9 @@ PRODUCT_PACKAGES += \
 # UFFD
 PRODUCT_ENABLE_UFFD_GC := false
 
+# DebugFS
+PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
