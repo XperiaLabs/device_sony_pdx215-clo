@@ -1529,6 +1529,8 @@ vendor/etc/libhdr_somc.xml
 
 # Display (HWC)
 vendor/etc/snapdragon_color_libs_config.xml
+-vendor/lib/libdisplayconfig.qti.so
+-vendor/lib64/libdisplayconfig.qti.so
 
 # Display (SDM)
 vendor/lib64/libqseed3.so
