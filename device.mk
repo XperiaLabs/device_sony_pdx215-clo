@@ -359,8 +359,9 @@ PRODUCT_PACKAGES += \
     vendor.semc.hardware.display@2.4.vendor
 
 # Shims
-PRODUCT_PACKAGES += android.hidl.base@1.0.vendor
-
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0.vendor \
+    libshim_libcdfw_remote_api
 # Shim (Lights HAL)
 PRODUCT_PACKAGES += \
     android.hardware.light-V1-ndk_platform.vendor \
