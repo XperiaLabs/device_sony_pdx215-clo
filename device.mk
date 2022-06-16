@@ -194,6 +194,10 @@ KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/$(AOSPA_BUILD)/$(KERNEL_MODULES_
 # Keymaster
 PRODUCT_PACKAGES += android.hardware.keymaster@4.1.vendor
 
+# KProfiles
+PRODUCT_PACKAGES += \
+    KProfiles
+
 # Media (Device)
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/media/media_codecs_performance_lahaina_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_lahaina.xml \

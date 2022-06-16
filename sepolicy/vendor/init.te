@@ -33,3 +33,6 @@ allow init default_android_service:service_manager add;
 allow init idd:unix_stream_socket connectto;
 
 allow init vendor_sysfs_graphics:file { write open };
+
+# Allow init to set attribute to sysfs_kprofiles
+allow init sysfs_kprofiles:file { setattr };

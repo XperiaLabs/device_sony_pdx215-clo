@@ -19,3 +19,6 @@ allow system_app system_suspend_control_internal_service:service_manager find;
 allow system_app default_android_service:service_manager find;
 
 allow system_app proc_pagetypeinfo:file { read open getattr };
+
+# Allow KProfiles to be adjusted by a system app
+allow system_app sysfs_kprofiles:file rw_file_perms;
