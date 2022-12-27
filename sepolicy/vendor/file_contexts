@@ -77,3 +77,6 @@
 
 # NFC devices
 /dev/pn553                                                u:object_r:nfc_device:s0
+
+# Thermal Engine
+/(vendor|system/vendor)/bin/hw/android\.hardware\.thermal@2\.0-service\.mock                                                u:object_r:hal_thermal_default_exec:s0
