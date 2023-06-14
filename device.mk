@@ -109,7 +109,9 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl \
     android.hardware.bluetooth.audio@2.1-impl \
     android.hardware.bluetooth.a2dp@1.0 \
-    android.hardware.bluetooth.a2dp@1.0.vendor
+    android.hardware.bluetooth.a2dp@1.0.vendor \
+    libldacBT_bco
+
 
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.vendor.btstack.enable.lpa=true
