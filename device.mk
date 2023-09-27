@@ -197,7 +197,7 @@ PRODUCT_COPY_FILES += \
 
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.lights-service.qti \
+    android.hardware.lights-service.sony_sagami \
     lights.sony
 
 # Native Libraries
