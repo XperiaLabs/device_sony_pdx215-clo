@@ -244,6 +244,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Protobuf
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-3.9.1-vendorcompat
+
 # QTI Components
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
