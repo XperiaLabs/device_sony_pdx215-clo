@@ -178,7 +178,8 @@ PRODUCT_PACKAGES += \
     init.sony-device-common.rc \
     init.sony-platform.rc \
     init.sony.rc \
-    init.sony-sm8350.perf.rc
+    init.sony-sm8350.perf.rc \
+    init.pdx215.rc
 
 # Kernel
 KERNEL_MODULES_INSTALL := dlkm
