@@ -176,7 +176,8 @@ PRODUCT_PACKAGES += \
     fstab.default.vendor_ramdisk \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc
+    init.sony.rc \
+    init.sony-sm8350.perf.rc
 
 # Kernel
 KERNEL_MODULES_INSTALL := dlkm
@@ -248,6 +249,10 @@ PRODUCT_PACKAGES += \
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Perf
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Protobuf
 PRODUCT_PACKAGES += \

@@ -32,6 +32,13 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "init.sony-sm8350.perf.rc",
+    src: "init.sony-sm8350.perf.rc",
+    sub_dir: "init",
+    device_specific: true,
+}
+
+prebuilt_etc {
     name: "init.target.rc",
     src: "init.target.rc",
     sub_dir: "init/hw",
