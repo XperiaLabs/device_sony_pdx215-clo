@@ -329,6 +329,12 @@ TARGET_COMMON_QTI_COMPONENTS := \
     vibrator \
     wfd
 
+PRODUCT_PACKAGES += \
+    libaptX_encoder \
+    libaptXHD_encoder
+
+TARGET_USE_QTI_BT_STACK := true
+TARGET_USE_AIDL_QTI_BT_AUDIO := true
 TARGET_GPS_COMPONENT_VARIANT := gps
 
 # RIL
