@@ -1953,12 +1953,8 @@ vendor/etc/media_codecs_vendor_audio.xml
 vendor/etc/media_lahaina/video_system_specs.json
 vendor/lib64/libmmosal.so
 
-# Media (Stagefright)
-vendor/lib/libstagefright_hdcp.so
-vendor/lib/libstagefright_soft_qtiflacdec.so
-vendor/lib/libstagefright_soft_somcalacdec.so
-vendor/lib64/libstagefright_hdcp.so
-vendor/lib64/libstagefright_soft_qtiflacdec.so
+# Media (Codec2) - from Sony/pdx234/pdx234:13/TKQ1.221114.001/1:user/release-keys
+vendor/etc/seccomp_policy/codec2.vendor.base-arm64.policy|5db9fe8570186062e390742f81737cf650e83c90
 
 # Media (Stagefright)
 vendor/lib/libstagefright_hdcp.so
