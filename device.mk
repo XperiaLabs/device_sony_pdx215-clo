@@ -35,6 +35,10 @@ PRODUCT_PACKAGES += \
     com.dsi.ant@1.0.vendor
 
 # Audio
+SOONG_CONFIG_NAMESPACES += android_hardware_audio
+SOONG_CONFIG_android_hardware_audio += run_64bit
+SOONG_CONFIG_android_hardware_audio_run_64bit := true
+
 AUDIO_HAL_DIR := vendor/qcom/opensource/audio-hal/primary-hal
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/lahaina/mixer_paths_hhg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths_hhg.xml \
