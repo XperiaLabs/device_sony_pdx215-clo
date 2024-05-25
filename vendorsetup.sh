@@ -28,6 +28,14 @@ case $choice in
         git am ../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_usb/0001-usb-Add-USB-inits-from-Xiaomi-lisa-DT.patch
         cd ../../../..
         echo -e
+        echo 'Applying patches to frameworks/av'
+        cd frameworks/av
+        git am --abort
+        git rebase --abort
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/frameworks_av/0001-Fixes-vtservice-cpu-hogging.patch
+        cd ../..
+        echo -e
         echo 'Applying patches to frameworks/base'
         cd frameworks/base
         git am --abort
