@@ -27,15 +27,15 @@ namespace hardware {
 namespace light {
 
 class Lights : public BnLights {
-    public:
-      Lights();
-      ndk::ScopedAStatus setLightState(int id, const HwLightState& state) override;
-      ndk::ScopedAStatus getLights(std::vector<HwLight>* types) override;
+  public:
+    Lights();
+    ndk::ScopedAStatus setLightState(int id, const HwLightState& state) override;
+    ndk::ScopedAStatus getLights(std::vector<HwLight>* types) override;
 
-    private:
-      std::map<int, light_device_t*> mLights;
-      std::vector<HwLight> mAvailableLights;
-      int maxLights;
+  private:
+    std::map<int, light_device_t*> mLights;
+    std::vector<HwLight> mAvailableLights;
+    int maxLights;
 };
 
 }  // namespace light
