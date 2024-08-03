@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2024 XperiaLabs
+# Copyright (C) 2024 XperiaLabs Project
 # Copyright (C) 2024 Paranoid Android
 #
 # SPDX-License-Identifier: Apache-2.0
@@ -8,9 +8,9 @@
 # Inherit Mainline Common BoardConfig
 include build/make/target/board/BoardConfigMainlineCommon.mk
 
-BOARD_VENDOR := sony
-
+# Paths
 DEVICE_PATH := device/sony/pdx215
+BOARD_VENDOR := sony
 
 # Architecture
 TARGET_ARCH := arm64
@@ -27,10 +27,6 @@ TARGET_2ND_CPU_VARIANT := cortex-a76
 
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
-
-# Assert
-TARGET_BOARD_INFO_FILE := device/qcom/pdx215/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := pdx215
 
 # AVB
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
@@ -71,9 +67,16 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 # Display
 TARGET_SCREEN_DENSITY := 440
 
+# Filesystem
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/filesystem/config.fs
+
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_lahaina
-TARGET_RECOVERY_DEVICE_MODULES := libinit_lahaina
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_pdx215
+TARGET_RECOVERY_DEVICE_MODULES := libinit_pdx215
+
+# HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/device_framework_matrix.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest_lahaina.xml
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 3
@@ -255,7 +258,7 @@ BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_EROFS_PCLUSTER_SIZE := 262144
 BOARD_EROFS_COMPRESSOR := lz4
 BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product system vendor odm system_ext vendor_dlkm
@@ -283,6 +286,9 @@ TARGET_SYSTEM_PROP += \
 TARGET_VENDOR_PROP += \
     $(DEVICE_PATH)/configs/properties/vendor.prop
 
+# OTA Assert
+TARGET_OTA_ASSERT_DEVICE := pdx215,XQ-BC42,XQ-BC52,XQ-BC62,XQ-BC72,SO-51B,SOG03,A101S
+
 # Recovery
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
@@ -294,17 +300,25 @@ TARGET_USERIMAGES_USE_F2FS := true
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
-# RIL APNs
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/ril/apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/apns-conf.xml
-
-# Security patch level
+# Security Patch Level
 BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
-# SELinux
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+# SEPolicy
+include device/qcom/sepolicy_vndr/SEPolicy.mk
+include hardware/sony/sepolicy/qti/SEPolicy.mk
+
+# SELinux Neverallows
+ifdef SELINUX_IGNORE_NEVERALLOWS
+else
+ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+SELINUX_IGNORE_NEVERALLOWS := true
+endif
+
+ifeq ($(TARGET_BUILD_VARIANT),eng)
+SELINUX_IGNORE_NEVERALLOWS := true
+endif
+endif
 
 # UFS
 #namespace definition for librecovery_updater
@@ -312,10 +326,3 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
-
-# VINTF
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/vintf/device_framework_matrix.xml
-
-DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/configs/vintf/manifest_lahaina.xml

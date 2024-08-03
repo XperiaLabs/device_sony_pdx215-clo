@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 cc_library_static {
-    name: "libinit_lahaina",
-    srcs: ["init_lahaina.cpp"],
+    name: "libinit_pdx215",
+    srcs: ["init_pdx215.cpp"],
     whole_static_libs: ["libbase"],
     recovery_available: true,
     include_dirs: [
