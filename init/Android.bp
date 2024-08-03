@@ -1,0 +1,47 @@
+//
+// Copyright (C) 2023 Project Mia
+// Copyright (C) 2023 Paranoid Android
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+prebuilt_etc {
+    name: "charger_fw_fstab.qti",
+    src: "charger_fw_fstab.qti",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "fstab.qcom",
+    src: "fstab.qcom",
+    vendor: true,
+    vendor_ramdisk_available: true,
+}
+
+prebuilt_etc {
+    name: "init.cust.rc",
+    src: "init.cust.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.recovery.cust.rc",
+    src: "init.recovery.cust.rc",
+    sub_dir: "init",
+    recovery: true,
+}
+
+prebuilt_etc {
+    name: "init.target.rc",
+    src: "init.target.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "ueventd-odm.rc",
+    filename: "ueventd.rc",
+    src: "ueventd-odm.rc",
+    device_specific: true,
+}
