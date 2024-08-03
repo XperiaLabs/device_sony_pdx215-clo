@@ -101,36 +101,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENABLE_UFFD_GC := false
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
-# Display
-PRODUCT_PACKAGES += \
-    libdisplayconfig.qti \
-    libqdMetaData \
-    libtinyxml \
-    android.hardware.graphics.mapper@3.0-impl-qti-display \
-    android.hardware.graphics.mapper@4.0-impl-qti-display \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service \
-    init.qti.display_boot.sh \
-    libdisplayconfig.qti \
-    libdisplayconfig.system.qti \
-    libqdMetaData.system \
-    libsdmcore \
-    libsdmutils \
-    memtrack.default \
-    libmemutils \
-    vendor.display.config@1.5 \
-    vendor.display.config@1.15.vendor \
-    vendor.display.config@2.0 \
-    vendor.display.config@2.0.vendor \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.config-V5-ndk \
-    vendor.qti.hardware.display.mapper@1.0.vendor \
-    vendor.qti.hardware.display.mapper@1.1.vendor \
-    vendor.qti.hardware.display.mapper@2.0.vendor \
-    vendor.qti.hardware.display.mapper@3.0.vendor \
-    vendor.qti.hardware.display.mapper@4.0.vendor
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
@@ -145,11 +115,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1.vendor
 
-PRODUCT_PACKAGES += \
-    android.hardware.gnss.measurement_corrections@1.1.vendor \
-    android.hardware.gnss.visibility_control@1.0.vendor \
-    android.hardware.gnss@2.1.vendor
-
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor
@@ -161,16 +126,8 @@ BOARD_HAVE_QCOM_FM := false
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
 
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl-qti \
-    android.hardware.health@2.1-service
-
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    libhidltransport.vendor \
-    libhwbinder.vendor \
     android.hidl.memory.block@1.0.vendor
 
 # HotwordEnrollement app permissions
@@ -190,14 +147,9 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
-    init.qcom.early_boot.sh \
     init.qcom.msim.sh \
-    init.qcom.rc \
-    init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
-    init.recovery.qcom.rc \
     init.target.rc \
     ueventd.qcom.rc \
     ueventd.sony.rc \
@@ -216,19 +168,8 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
 
 # Media
-PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
-
 PRODUCT_PACKAGES += \
     libavservices_minijail \
-    libavservices_minijail.vendor \
-    libavservices_minijail_vendor \
     libcodec2_hidl@1.0.vendor
 
 # Media (Device)
@@ -247,11 +188,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# Net
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor \
-    netutils-wrapper-1.0
-
 # Neural networks
 PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.3.vendor
@@ -260,9 +196,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.nxp \
     android.hardware.secure_element@1.2.vendor \
-    com.android.nfc_extras \
-    Tag \
-    NfcNci
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -346,30 +279,6 @@ PRODUCT_PACKAGES += \
     android.hardware.light-V1-ndk_platform.vendor \
     android.hidl.base@1.0.vendor
 
-# Telephony
-PRODUCT_PACKAGES += \
-    extphonelib \
-    extphonelib-product \
-    extphonelib.xml \
-    extphonelib_product.xml \
-    ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti-telephony-hidl-wrapper-prd \
-    qti_telephony_hidl_wrapper.xml \
-    qti_telephony_hidl_wrapper_prd.xml \
-    qti-telephony-utils \
-    qti-telephony-utils-prd \
-    qti_telephony_utils.xml \
-    qti_telephony_utils_prd.xml \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
-
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti
@@ -396,17 +305,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.1.vendor \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
-# Wi-Fi
-PRODUCT_PACKAGES += \
-    android.hardware.wifi-service \
-    hostapd \
-    libwpa_client \
-    libwifi-hal-ctrl \
-    libwifi-hal-qcom \
-    vendor.qti.hardware.wifi.hostapd@1.2.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.1.vendor \
-    wpa_supplicant \
-    wpa_supplicant.conf
+# WLAN
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 # Xperia Modules | Xperia Extras
 #$(call inherit-product, hardware/sony/XperiaModules.mk)
