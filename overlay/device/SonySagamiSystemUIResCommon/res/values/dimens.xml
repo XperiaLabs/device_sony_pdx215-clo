@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2023, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+-->
+<resources>
+    <!-- Margin on the left side of the carrier text on Keyguard -->
+    <dimen name="keyguard_carrier_text_margin">25dp</dimen>
+
+    <!-- paddings for container with status icons and battery -->
+    <!-- padding start is a bit smaller than end to account for status icon margin-->
+    <dimen name="status_bar_icons_padding_start">3dp</dimen>
+
+    <dimen name="status_bar_icons_padding_end">4dp</dimen>
+    <dimen name="status_bar_icons_padding_bottom">0dp</dimen>
+    <dimen name="status_bar_icons_padding_top">0dp</dimen>
+
+    <!-- gap on either side of status bar notification icons -->
+    <dimen name="status_bar_icon_horizontal_margin">0sp</dimen>
+
+    <!-- the padding on the start of the statusbar -->
+    <dimen name="status_bar_padding_start">8dp</dimen>
+
+    <!-- the padding on the end of the statusbar -->
+    <dimen name="status_bar_padding_end">4dp</dimen>
+
+    <!-- Margin on the right side of the system icon group on Keyguard. -->
+    <dimen name="system_icons_keyguard_padding_end">8dp</dimen>
+
+    <!-- the padding on the top of the statusbar (usually 0) -->
+    <dimen name="status_bar_padding_top">0dp</dimen>
+
+    <!-- the radius of the overflow dot in the status bar -->
+    <dimen name="overflow_dot_radius">2sp</dimen>
+
+    <!-- the padding between dots in the icon overflow -->
+    <dimen name="overflow_icon_dot_padding">3sp</dimen>
+
+    <!-- Height of the status bar header bar when on Keyguard -->
+    <dimen name="status_bar_header_height_keyguard">@*android:dimen/status_bar_height_default</dimen>
+
+    <!-- The maximum offset in either direction that elements are moved vertically to prevent
+         burn-in on status bar and navigation bar. -->
+    <dimen name="vertical_max_shift">1.0dp</dimen>
+
+    <!-- The maximum offset in either direction that elements are moved horizontally to prevent
+         burn-in on status bar and navigation bar. -->
+    <dimen name="horizontal_max_shift">2.0dp</dimen>
+</resources>

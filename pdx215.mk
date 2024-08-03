@@ -147,11 +147,21 @@ KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/lahaina/$(KERNEL_MODULES_INSTALL
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
 
-# Overlay
+# Overlays
+PRODUCT_ENFORCE_RRO_TARGETS := *
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay
+
+# Overlay Packages
 PRODUCT_PACKAGES += \
-    LahainaFrameworks \
-    LahainaSettings \
-    LahainaSystemUI
+    CarrierConfigResCommon \
+    SonyPDX215SystemUIRes \
+    SonySagamiFrameworksResCommon \
+    SonySagamiSettingsProviderOverlayCommon \
+    SonySagamiSettingsResCommon \
+    SonySagamiSystemUIResCommon \
+    SonySagamiTelephonyResCommon \
+    WifiResCommon
 
 # Partitions
 PRODUCT_BUILD_ODM_IMAGE := true
