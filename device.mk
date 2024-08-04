@@ -167,6 +167,11 @@ KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/pdx215/$(KERNEL_MODULES_INSTALL)
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
 
+# Manifests
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest_lahaina.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/configs/vintf/pdx215_vendor_framework_compatibility_matrix.xml
+
 # Media
 PRODUCT_PACKAGES += \
     libavservices_minijail \
