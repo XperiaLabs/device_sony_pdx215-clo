@@ -235,11 +235,24 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # QTI Components
 TARGET_COMMON_QTI_COMPONENTS := \
-    all \
+    adreno \
+    alarm \
+    audio \
+    av \
+    bt \
     charging \
+    display \
     dsprpcd \
+    gps \
+    init \
     keymaster \
-    qseecomd
+    overlay \
+    perf \
+    qseecomd \
+    telephony \
+    usb \
+    wfd \
+    wlan
 
 # SDK
 BOARD_SYSTEMSDK_VERSIONS := 30
