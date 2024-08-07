@@ -116,9 +116,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.common@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
-# DebugFS
+# UFFD
 PRODUCT_ENABLE_UFFD_GC := false
-PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # DRM
 PRODUCT_PACKAGES += \
