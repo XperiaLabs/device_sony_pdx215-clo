@@ -109,119 +109,30 @@ BOARD_KERNEL_CMDLINE := \
     buildproduct=pdx215 \
     androidboot.selinux=permissive
 
-BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_RAMDISK_USE_LZ4 := true
-BOARD_KERNEL_SECOND_OFFSET := 0x00f00000
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_KERNEL_OFFSET := 0x00008000
-BOARD_DTB_OFFSET := 0x01f00000
-BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
-BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
-BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_KERNEL_SOURCE := kernel/msm-5.4
-TARGET_KERNEL_CONFIG := pdx215_defconfig
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_SEPARATED_DTBO := true
-TARGET_KERNEL_NO_GCC := true
-KERNEL_LTO := thin
+KERNEL_PREBUILT_DIR := device/sony/pdx215-kernel
 
-# Use External DTC
-TARGET_KERNEL_ADDITIONAL_FLAGS := \
-    DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc \
-    DTC_OVERLAY_TEST_EXT=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/libufdt/ufdt_apply_overlay \
-    LLVM=1 LLVM_IAS=1
+# Prebuilt Kernel
+TARGET_NO_KERNEL_OVERRIDE := true
+TARGET_NO_KERNEL := false
+BOARD_KERNEL_BINARIES := kernel
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtbs/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbs/dtbo.img
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/Image
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)-kernel/dtbs/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
+    $(DEVICE_PATH)-kernel/Image:kernel \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor-modules/,$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules)
 
-BOARD_VENDOR_KERNEL_MODULES := \
-    $(KERNEL_MODULES_OUT)/adsp_loader_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/apr_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/bolero_cdc_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/bt_fm_slim.ko \
-    $(KERNEL_MODULES_OUT)/btpower.ko \
-    $(KERNEL_MODULES_OUT)/camera.ko \
-    $(KERNEL_MODULES_OUT)/e4000.ko \
-    $(KERNEL_MODULES_OUT)/fc0011.ko \
-    $(KERNEL_MODULES_OUT)/fc0012.ko \
-    $(KERNEL_MODULES_OUT)/fc0013.ko \
-    $(KERNEL_MODULES_OUT)/fc2580.ko \
-    $(KERNEL_MODULES_OUT)/hdmi_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/hid-aksys.ko \
-    $(KERNEL_MODULES_OUT)/it913x.ko \
-    $(KERNEL_MODULES_OUT)/llcc_perfmon.ko \
-    $(KERNEL_MODULES_OUT)/m88rs6000t.ko \
-    $(KERNEL_MODULES_OUT)/machine_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/max2165.ko \
-    $(KERNEL_MODULES_OUT)/mbhc_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/mc44s803.ko \
-    $(KERNEL_MODULES_OUT)/msi001.ko \
-    $(KERNEL_MODULES_OUT)/msm_drm.ko \
-    $(KERNEL_MODULES_OUT)/mt2060.ko \
-    $(KERNEL_MODULES_OUT)/mt2063.ko \
-    $(KERNEL_MODULES_OUT)/mt20xx.ko \
-    $(KERNEL_MODULES_OUT)/mt2131.ko \
-    $(KERNEL_MODULES_OUT)/mt2266.ko \
-    $(KERNEL_MODULES_OUT)/mxl301rf.ko \
-    $(KERNEL_MODULES_OUT)/mxl5005s.ko \
-    $(KERNEL_MODULES_OUT)/mxl5007t.ko \
-    $(KERNEL_MODULES_OUT)/native_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/pinctrl_lpi_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/pinctrl_wcd_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/platform_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/q6_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/q6_notifier_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/q6_pdr_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/qm1d1b0004.ko \
-    $(KERNEL_MODULES_OUT)/qm1d1c0042.ko \
-    $(KERNEL_MODULES_OUT)/qt1010.ko \
-    $(KERNEL_MODULES_OUT)/r820t.ko \
-    $(KERNEL_MODULES_OUT)/radio-i2c-rtc6226-qca.ko \
-    $(KERNEL_MODULES_OUT)/rdbg.ko \
-    $(KERNEL_MODULES_OUT)/rmnet_core.ko \
-    $(KERNEL_MODULES_OUT)/rmnet_ctl.ko \
-    $(KERNEL_MODULES_OUT)/rmnet_offload.ko \
-    $(KERNEL_MODULES_OUT)/rmnet_shs.ko \
-    $(KERNEL_MODULES_OUT)/rx_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/si2157.ko \
-    $(KERNEL_MODULES_OUT)/slimbus.ko \
-    $(KERNEL_MODULES_OUT)/slimbus-ngd.ko \
-    $(KERNEL_MODULES_OUT)/snd_event_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/stub_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/swr_ctrl_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/swr_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/swr_dmic_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/swr_haptics_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/tda18212.ko \
-    $(KERNEL_MODULES_OUT)/tda18218.ko \
-    $(KERNEL_MODULES_OUT)/tda18250.ko \
-    $(KERNEL_MODULES_OUT)/tda9887.ko \
-    $(KERNEL_MODULES_OUT)/tea5761.ko \
-    $(KERNEL_MODULES_OUT)/tea5767.ko \
-    $(KERNEL_MODULES_OUT)/tua9001.ko \
-    $(KERNEL_MODULES_OUT)/tuner-simple.ko \
-    $(KERNEL_MODULES_OUT)/tuner-types.ko \
-    $(KERNEL_MODULES_OUT)/tuner-xc2028.ko \
-    $(KERNEL_MODULES_OUT)/tx_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/va_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd937x_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd937x_slave_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd938x_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd938x_slave_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd9xxx_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wcd_core_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wlan.ko \
-    $(KERNEL_MODULES_OUT)/wsa883x_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/wsa_macro_dlkm.ko \
-    $(KERNEL_MODULES_OUT)/xc4000.ko \
-    $(KERNEL_MODULES_OUT)/xc5000.ko
-
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(KERNEL_MODULES_OUT)/msm_drm.ko
+# Kernel Modules
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PREBUILT_DIR)/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(strip $(shell cat $(KERNEL_PREBUILT_DIR)/modules.include.recovery))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_PREBUILT_DIR)/modules.blocklist
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PREBUILT_DIR)/modules.load))
 
 # GPS
 LOC_HIDL_VERSION = 4.0

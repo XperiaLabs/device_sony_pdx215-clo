@@ -6,7 +6,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter lahaina, $(TARGET_DEVICE)),)
+ifneq ($(filter pdx215, $(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -70,5 +70,10 @@ ALL_DEFAULT_INSTALLED_MODULES += \
 	$(RFS_MSM_MPSS_SYMLINKS) \
 	$(RFS_MSM_SLPI_SYMLINKS) \
 	$(WLAN_FIRMWARE_SYMLINKS)
+
+$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr: $(wildcard $(PRODUCT_VENDOR_KERNEL_HEADERS)/*)
+ rm -rf $@
+ mkdir -p $@/include
+ cp -a $(PRODUCT_VENDOR_KERNEL_HEADERS)/. $@/include
 
 endif
