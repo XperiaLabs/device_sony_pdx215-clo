@@ -231,4 +231,10 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(RFS_MSM_WPSS_SYMLINKS) \
     $(WIFI_FIRMWARE_SYMLINKS)
 
+# Kernel Headers
+$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr: $(wildcard device/sony/pdx215-kernel/kernel-headers/*)
+	rm -rf $@
+	mkdir -p $@/include
+	cp -a device/sony/pdx215-kernel/kernel-headers/. $@/include
+
 endif
