@@ -96,7 +96,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <interface>
             <name>IQConfig</name>
             <instance>default</instance>
-        </interface>>
+        </interface>
     </hal>
     <!-- DSP Service -->
     <hal format="hidl">
@@ -759,6 +759,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <interface>
             <name>ISxrCrypto</name>
             <instance>sxrhalservice</instance>
+        </interface>
+    </hal>
+    <!-- FP HAL service -->
+    <hal format="hidl">
+        <name>vendor.egistec.hardware.fingerprint</name>
+        <transport>hwbinder</transport>
+        <version>4.0</version>
+        <interface>
+            <name>IBiometricsFingerprintRbs</name>
+            <instance>default</instance>
         </interface>
     </hal>
 </manifest>
