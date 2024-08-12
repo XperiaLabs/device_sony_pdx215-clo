@@ -268,6 +268,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
     gps \
     init \
     keymaster \
+    media \
+    nfc \
     overlay \
     perf \
     qseecomd \
