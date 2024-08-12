@@ -1,13 +1,13 @@
-From 484a0ccd178c98bcc422e7e183cd1c7352716626 Mon Sep 17 00:00:00 2001
-From: Saku <saku-bruh@proton.me>
-Date: Tue, 6 Aug 2024 01:46:41 +0300
+From 8ea15d77d2a6604fbe036186f45abb32ee594528 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Mon, 12 Aug 2024 21:01:56 +0000
 Subject: [PATCH] products: Introduce Sony Xperia 1 III (pdx215)
 
 ---
- products/AndroidProducts.mk        |  4 +++
- products/pdx215/aospa.dependencies | 46 ++++++++++++++++++++++++++++++
- products/pdx215/aospa_pdx215.mk    | 44 ++++++++++++++++++++++++++++
- 3 files changed, 94 insertions(+)
+ products/AndroidProducts.mk        |  4 ++
+ products/pdx215/aospa.dependencies | 62 ++++++++++++++++++++++++++++++
+ products/pdx215/aospa_pdx215.mk    | 44 +++++++++++++++++++++
+ 3 files changed, 110 insertions(+)
  create mode 100644 products/pdx215/aospa.dependencies
  create mode 100644 products/pdx215/aospa_pdx215.mk
 
@@ -35,10 +35,10 @@ index f238bbc..c604c60 100644
      aospa_phone2-userdebug \
 diff --git a/products/pdx215/aospa.dependencies b/products/pdx215/aospa.dependencies
 new file mode 100644
-index 0000000..5d04123
+index 0000000..1a03173
 --- /dev/null
 +++ b/products/pdx215/aospa.dependencies
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,62 @@
 +[
 +    {
 +        "remote":       "xperialabs",
@@ -51,25 +51,41 @@ index 0000000..5d04123
 +        "repository":   "vendor_sony_pdx215-clo",
 +        "target_path":  "vendor/sony/pdx215",
 +        "revision":     "61.2.A.0.472A",
-+        "clone-depth":  "1"
 +    },
 +    {
 +        "remote":       "xperialabs",
 +        "repository":   "hardware_sony",
 +        "target_path":  "hardware/sony",
 +        "revision":     "UDC-CLO"
-+    }
++    },
 +    {
 +        "remote":       "xperialabs",
-+        "repository":   "kernel_sony_sagami",
-+        "target_path":  "kernel/msm-5.4",
-+        "revision":     "SomethingExplosive-LittleBoy_CLO"
-+        "clone-depth":  "1"
++        "repository":   "device_sony_pdx215-kernel",
++        "target_path":  "device/sony/pdx215-kernel",
++        "revision":     "uvite"
 +    },
 +    {
 +        "remote":       "aospa",
 +        "repository":   "AOSPA/android_hardware_qcom_audio",
 +        "target_path":  "vendor/qcom/opensource/audio-hal/primary-hal",
++        "revision":     "uvite-888"
++    },
++    {
++        "remote":       "aospa",
++        "repository":   "AOSPA/android_hardware_qcom_media",
++        "target_path":  "hardware/qcom/media",
++        "revision":     "uvite-888"
++    },
++    {
++        "remote":       "aospa",
++        "repository":   "AOSPA/android_hardware_qcom_display",
++        "target_path":  "hardware/qcom/display",
++        "revision":     "uvite-888"
++    },
++    {
++        "remote":       "aospa",
++        "repository":   "AOSPA/android_hardware_qcom_gps",
++        "target_path":  "hardware/qcom/gps",
 +        "revision":     "uvite-888"
 +    },
 +    {
@@ -87,7 +103,7 @@ index 0000000..5d04123
 +]
 diff --git a/products/pdx215/aospa_pdx215.mk b/products/pdx215/aospa_pdx215.mk
 new file mode 100644
-index 0000000..16affda
+index 0000000..caaca10
 --- /dev/null
 +++ b/products/pdx215/aospa_pdx215.mk
 @@ -0,0 +1,44 @@
