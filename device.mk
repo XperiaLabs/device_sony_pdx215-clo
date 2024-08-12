@@ -166,8 +166,6 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.qcom.msim.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.target.rc \
     ueventd.sony.rc \
     fstab.default \
@@ -220,8 +218,7 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxG711Enc \
-    libOmxQcelp13Enc \
-    libstagefrighthw
+    libOmxQcelp13Enc
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -324,11 +321,7 @@ PRODUCT_PACKAGES += \
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti
-
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
-
+    
 # Vendor libstdc++
 PRODUCT_PACKAGES += \
     libstdc++_vendor
