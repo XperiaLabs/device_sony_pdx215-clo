@@ -168,7 +168,6 @@ vendor.display.comp_mask=0
 vendor.display.enable_optimize_refresh=1
 vendor.display.disable_offline_rotator=1
 vendor.display.enable_async_powermode=0
-vendor.display.disable_hw_recovery_dump=1
 
 # Display (Addons)
 vendor.display.enable_hdr10_gpu_target=1
