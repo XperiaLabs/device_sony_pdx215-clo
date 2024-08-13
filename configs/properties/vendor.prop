@@ -236,16 +236,6 @@ debug.sf.high_fps_late_sf_phase_offset_ns=-2000000
 # Telephony
 telephony.active_modems.max_count=2
 
-# USB
-vendor.usb.diag.func.name=ffs
-vendor.usb.dpl.inst.name=dpl
-vendor.usb.rmnet.func.name=gsi
-vendor.usb.rmnet.inst.name=rmnet
-vendor.usb.rndis.func.name=gsi
-vendor.usb.use_ffs_mtp=1
-vendor.usb.use_gadget_hal=0
-sys.usb.mtp.batchcancel=1
-
 # Wifi
 wifi.aware.interface=wifi-aware0
 

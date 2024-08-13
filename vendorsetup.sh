@@ -45,5 +45,5 @@ case $choice in
 esac
 
 if [[ "$choice" == "2" ]]; then
-    echo "Patches and fixes skipped... Starting build process."
+    echo -e
 fi

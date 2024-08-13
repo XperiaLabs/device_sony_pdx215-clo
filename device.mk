@@ -166,13 +166,17 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.qcom.msim.sh \
+    init.qcom.usb.sh \
+    init.qcom.usb.rc \
     init.target.rc \
     ueventd.sony.rc \
+    ueventd.pdx215.rc \
     fstab.default \
     fstab.default.vendor_ramdisk \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc
+    init.sony.rc \
+    init.sony.usb.rc
 
 # Kernel Modules
 PRODUCT_VENDOR_KERNEL_HEADERS += $(DEVICE_PATH)-kernel/kernel-headers
@@ -302,8 +306,7 @@ PRODUCT_PACKAGES += \
 # Soong Namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/sony \
-    vendor/qcom/opensource/usb/etc
+    hardware/sony
 
 # Sony Display Interface
 PRODUCT_PACKAGES += \
