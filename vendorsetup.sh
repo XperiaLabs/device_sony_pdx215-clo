@@ -19,6 +19,13 @@ case $choice in
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0001-products-Introduce-Sony-Xperia-1-III-pdx215.patch
         cd ../..
         echo -e
+        echo 'Applying patches to vendor/qcom/opensource/usb'
+        echo -e
+        cd vendor/qcom/opensource/usb
+        git reset --hard FETCH_HEAD
+        git am ../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_usb/0001-usb-Add-USB-inits-from-Xiaomi-lisa-DT.patch
+        cd ../../../..
+        echo -e
         echo 'Done Applying all Patches!'
         echo -e
         echo 'Checking if problematic FM folder exists...'

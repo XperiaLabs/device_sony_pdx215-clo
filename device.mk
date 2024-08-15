@@ -175,8 +175,7 @@ PRODUCT_PACKAGES += \
     fstab.default.vendor_ramdisk \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc \
-    init.sony.usb.rc
+    init.sony.rc
 
 # Kernel Modules
 PRODUCT_VENDOR_KERNEL_HEADERS += $(DEVICE_PATH)-kernel/kernel-headers
