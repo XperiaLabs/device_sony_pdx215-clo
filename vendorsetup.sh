@@ -25,6 +25,12 @@ case $choice in
         git reset --hard FETCH_HEAD
         git am ../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_usb/0001-usb-Add-USB-inits-from-Xiaomi-lisa-DT.patch
         cd ../../../..
+        echo 'Applying patches to frameworks/base'
+        echo -e
+        cd frameworks/base
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-SystemUI-Follow-monet-theme-on-privacy-indicators.patch
+        cd ../..
         echo -e
         echo 'Done Applying all Patches!'
         echo -e
