@@ -177,8 +177,9 @@ PRODUCT_PACKAGES += \
     init.sony-platform.rc \
     init.sony.rc
 
-# Kernel Modules
-PRODUCT_VENDOR_KERNEL_HEADERS += $(DEVICE_PATH)-kernel/kernel-headers
+# Kernel
+KERNEL_MODULES_INSTALL := dlkm
+KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/$(AOSPA_BUILD)/$(KERNEL_MODULES_INSTALL)/lib/modules
 
 # Keymaster
 PRODUCT_PACKAGES += \

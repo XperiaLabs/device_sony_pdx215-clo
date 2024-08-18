@@ -44,7 +44,7 @@ index 0000000..1a03173
 +        "remote":       "xperialabs",
 +        "repository":   "device_sony_pdx215-clo",
 +        "target_path":  "device/sony/pdx215",
-+        "revision":     "uvite"
++        "revision":     "uvite-inline"
 +    },
 +    {
 +        "remote":       "xperialabs",
@@ -60,9 +60,9 @@ index 0000000..1a03173
 +    },
 +    {
 +        "remote":       "xperialabs",
-+        "repository":   "device_sony_pdx215-kernel",
-+        "target_path":  "device/sony/pdx215-kernel",
-+        "revision":     "uvite"
++        "repository":   "kernel_sony_sagami",
++        "target_path":  "kernel/msm-5.4",
++        "revision":     "msm-5.4"
 +    },
 +    {
 +        "remote":       "aospa",
