@@ -88,7 +88,10 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_pdx215
 TARGET_RECOVERY_DEVICE_MODULES := libinit_pdx215
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml \
+    $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix_sony.xml
+
 DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/vintf/manifest_lahaina.xml \
     $(DEVICE_PATH)/configs/vintf/manifest_sony.xml
