@@ -19,3 +19,13 @@ allow init tad_socket:sock_file { write };
 allow init tad:unix_stream_socket { connectto };
 
 allow init keyprovd_exec:file { read getattr map execute open };
+
+allow init servicemanager:binder { transfer call };
+
+allow init vendor_file:file { execute execute_no_trans };
+
+allow init idd_socket_file:sock_file write;
+
+allow init idd:unix_dgram_socket sendto;
+
+allow init default_android_service:service_manager add;

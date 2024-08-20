@@ -166,6 +166,7 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.qcom.msim.sh \
+    init.mdm.sh \
     init.qcom.usb.sh \
     init.qcom.usb.rc \
     init.target.rc \
@@ -211,7 +212,12 @@ PRODUCT_PACKAGES += \
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.nxp \
-    android.hardware.secure_element@1.2.vendor \
+    android.hardware.secure_element@1.0 \
+    android.hardware.secure_element@1.0.vendor \
+    android.hardware.secure_element@1.1 \
+    android.hardware.secure_element@1.1.vendor \
+    android.hardware.secure_element@1.2 \
+    android.hardware.secure_element@1.2.vendor
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -245,7 +251,8 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Protobuf
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full-3.9.1-vendorcompat
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat
 
 # Protobuf Prebuilts
 PRODUCT_COPY_FILES += \
