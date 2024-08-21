@@ -56,7 +56,7 @@ function setup_vendor_deps() {
         exit 1
     fi
 
-    export BINARIES_LOCATION="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin
+    export BINARIES_LOCATION="$MY_DIR"/configs/tools/extract-tools/${HOST}-x86/bin
     export CLANG_BINUTILS="$ANDROID_ROOT"/prebuilts/clang/host/${HOST}-x86/llvm-binutils-stable
 
     export SIMG2IMG="$BINARIES_LOCATION"/simg2img
@@ -1525,16 +1525,16 @@ function oat2dex() {
     local OAT=
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$ANDROID_ROOT"/prebuilts/extract-tools/common/smali/baksmali.jar
-        export SMALIJAR="$ANDROID_ROOT"/prebuilts/extract-tools/common/smali/smali.jar
+        export BAKSMALIJAR="$MY_DIR"/configs/tools/extract-tools/common/smali/baksmali.jar
+        export SMALIJAR="$MY_DIR"/configs/tools/extract-tools/common/smali/smali.jar
     fi
 
     if [ -z "$VDEXEXTRACTOR" ]; then
-        export VDEXEXTRACTOR="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin/vdexExtractor
+        export VDEXEXTRACTOR="$MY_DIR"/configs/tools/extract-tools/${HOST}-x86/bin/vdexExtractor
     fi
 
     if [ -z "$CDEXCONVERTER" ]; then
-        export CDEXCONVERTER="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin/compact_dex_converter
+        export CDEXCONVERTER="$MY_DIR"/configs/tools/extract-tools/${HOST}-x86/bin/compact_dex_converter
     fi
 
     # Extract existing boot.oats to the temp folder
