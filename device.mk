@@ -320,15 +320,15 @@ PRODUCT_COPY_FILES += \
     device/qcom/wlan/lahaina/WCNSS_qcom_cfg_wlan.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.init
 
 # Xperia Modules | Xperia Extras
-#$(call inherit-product, hardware/sony/XperiaModules.mk)
+$(call inherit-product, hardware/sony/XperiaModules.mk)
 #$(call inherit-product, vendor/sony/extra/Sagami/extra.mk)
 
 # Xperia Modules - Flags
 #TARGET_SHIPS_XPERIA_SETTINGS_MENU := true
 #TARGET_SUPPORTS_IMAGE_ENHANCEMENT := true
 #TARGET_SUPPORTS_BATTERY_CARE := true
-#TARGET_SUPPORTS_HIGH_REFRESH_RATE := true
-#TARGET_SUPPORTS_HIGH_POLLING_RATE := true
+TARGET_SUPPORTS_HIGH_REFRESH_RATE := true
+TARGET_SUPPORTS_HIGH_POLLING_RATE := true
 
 # Xperia Extras - Flags
 #TARGET_SHIPS_SONY_FRAMEWORK := true
