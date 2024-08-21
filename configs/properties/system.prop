@@ -9,19 +9,9 @@ log.tag.CHIUSECASE=ERROR
 
 # Display
 debug.gralloc.gfx_ubwc_disable=0
-debug.sf.enable_hwc_vds=1
 persist.vendor.color.matrix=2
 
-# CNE
-persist.vendor.cne.feature=1
-
-# DPM
-persist.vendor.dpm.feature=11
-
 # IMS
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.dbg.wfc_avail_ovr=1
 ro.telephony.default_cdma_sub=0
 ro.vendor.radio.5g=3
 persist.data.iwlan.enable=true
@@ -43,16 +33,8 @@ persist.vendor.radio.data_ltd_sys_ind=1
 persist.vendor.radio.force_ltd_sys_ind=1
 
 # Media
-media.stagefright.enable-player=true
-media.stagefright.enable-http=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
-media.stagefright.enable-fma2dp=true
-media.stagefright.enable-scan=true
 media.stagefright.thumbnail.prefer_hw_codecs=true
 mmp.enable.3g2=true
-media.aac_51_output_enabled=true
-vendor.mm.enable.qcom_parser=12091405
 ro.mediacodec.min_sample_rate=7350
 ro.mediacodec.max_sample_rate=2822400
 media.settings.xml=/odm/etc/media_profiles_V1_0.xml
@@ -62,7 +44,6 @@ persist.sys.fflag.override.settings_network_and_internet_v2=true
 
 # Netmgr
 persist.vendor.data.iwlan.enable=true
-persist.vendor.data.mode=concurrent
 
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
