@@ -56,6 +56,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+
 # Audio
 TARGET_COMBINES_MIXER_PATHS := true
 
@@ -68,6 +71,7 @@ TARGET_USES_ION := true
 TARGET_NO_RAW10_CUSTOM_FORMAT := true
 TARGET_USES_COLOR_METADATA := true
 TARGET_GRALLOC_HANDLE_HAS_NO_RESERVED_SIZE := true
+TARGET_USES_EGL_DISPLAY_ARRAY := true
 
 # DTB
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -79,9 +83,6 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 
 # Display
 TARGET_SCREEN_DENSITY := 440
-
-# Filesystem
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/filesystem/config.fs
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_pdx215
@@ -117,7 +118,8 @@ BOARD_KERNEL_CMDLINE := \
     loop.max_part=7 \
     iptable_raw.raw_before_defrag=1 \
     ip6table_raw.raw_before_defrag=1 \
-    buildproduct=pdx215
+    buildproduct=pdx215 \
+    androidboot.selinux=permissive
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -347,7 +349,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # SEPolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/privatess
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 
 # SELinux Neverallows
 ifdef SELINUX_IGNORE_NEVERALLOWS

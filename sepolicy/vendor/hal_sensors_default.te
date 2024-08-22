@@ -1,0 +1,1 @@
+allow hal_sensors_default hal_idd_hwservice:hwservice_manager find;

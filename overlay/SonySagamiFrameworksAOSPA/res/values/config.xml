@@ -21,4 +21,7 @@
 
     <!-- The maximum range of gamma adjustment possible using the screen auto-brightness adjustment setting. -->
     <fraction name="config_autoBrightnessAdjustmentMaxGamma">150%</fraction>
+
+    <!-- Build fingerprint from stock ROM -->
+    <string name="config_stockFingerprint" translatable="false">Sony/XQ-BC72/XQ-BC72:13/61.2.A.0.472A/061002A0000472A0046651803:user/release-keys</string>
 </resources>

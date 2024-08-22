@@ -29,3 +29,7 @@ allow init idd_socket_file:sock_file write;
 allow init idd:unix_dgram_socket sendto;
 
 allow init default_android_service:service_manager add;
+
+allow init idd:unix_stream_socket connectto;
+
+allow init vendor_sysfs_graphics:file { write open };
