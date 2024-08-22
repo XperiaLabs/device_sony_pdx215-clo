@@ -196,9 +196,12 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc
 
 # Overlay Packages
+PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
     SonyPDX215SystemUIRes \
+    SonySagamiFrameworksAOSPA \
+    SonySagamiSecureElement \
     SonySagamiFrameworksResCommon \
     SonySagamiSettingsProviderOverlayCommon \
     SonySagamiSettingsResCommon \

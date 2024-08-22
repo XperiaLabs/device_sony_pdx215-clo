@@ -6,8 +6,10 @@
 -->
 <resources>
 
-    <string-array name="config_skuSupportsSecureNfc">
+    <string-array name="config_skuSupportsSecureNfc" translatable="false">
+        <item>pdx214</item>
         <item>pdx215</item>
+        <item>pdx217</item>
     </string-array>
 
 </resources>
