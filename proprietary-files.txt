@@ -245,6 +245,12 @@ vendor/etc/zoom_noise_reduction/znr_default_44k.tbl
 vendor/etc/zoom_noise_reduction/znr_default_48k.tbl
 vendor/etc/zoom_noise_reduction/znr_parameter.xml
 
+# Audio Libraries (system_ext) - From OOS SKQ1.211113.001 P.202208171858
+system_ext/lib/libvr_sam_wrapper.so|a44ed4c2c5971cb9ab875849f05b9403075279ef
+system_ext/lib/libvraudio.so|ad2425c77371d96540639f9a11b16cf1fc939337
+system_ext/lib64/libvraudio.so|712439857147b56184aeb4ba1dfba88e4782e94a
+system_ext/lib64/libvr_sam_wrapper.so|843b5de994417541b555f14f0a43086c4d4f43fc
+
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
