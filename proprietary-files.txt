@@ -1999,6 +1999,8 @@ vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/librilqmimiscservices.so
 vendor/lib64/librilqmiservices.so
 vendor/lib64/libsystem_health_mon.so
+vendor/lib64/qcrilHalMarshal.so|c1840ec37d26f37efc40f4b1380f8b613e8964c6
+vendor/lib64/qcril_hal_client.so|fa3feac34f369cd22fda4b9f94cc4d679c704ec9
 vendor/lib64/qcrilMarshal.so
 vendor/lib64/qcrild_libqcrilnrutils.so
 vendor/lib64/qtiril-utils.so
