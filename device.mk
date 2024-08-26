@@ -19,8 +19,6 @@ $(call inherit-product, vendor/sony/pdx215/pdx215-vendor.mk)
 
 # Paths
 DEVICE_PATH := device/sony/pdx215
-PRODUCT_SOONG_NAMESPACES += \
-    $(DEVICE_PATH)
 
 # API
 BOARD_SHIPPING_API_LEVEL := 30
@@ -34,8 +32,6 @@ TARGET_BOOTLOADER_BOARD_NAME := lahaina
 # ANT+
 PRODUCT_PACKAGES += \
     com.dsi.ant@1.0.vendor
-
-# Audio
 
 # Audio
 AUDIO_HAL_DIR := vendor/qcom/opensource/audio-hal/primary-hal
@@ -73,6 +69,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_lahaina/mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_ODM)/etc/sound_trigger_platform_info.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_lahaina/sound_trigger_platform_info.xml
+
+PRODUCT_PACKAGES += \
+    audio.primary.default \
+    sound_trigger.primary.lahaina \
+    android.hardware.audio.sounddose-vendor-impl
 
 # AuthSecret HAL
 PRODUCT_PACKAGES += android.hardware.authsecret@1.0-service
@@ -144,12 +145,10 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += android.hardware.biometrics.fingerprint@2.1.vendor
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
+PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 # Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0.vendor
+PRODUCT_PACKAGES += android.hardware.gatekeeper@1.0.vendor
 
 # FM
 BOARD_HAVE_QCOM_FM := false
@@ -195,8 +194,7 @@ KERNEL_MODULES_OUT := $(OUT_DIR)/target/product/$(AOSPA_BUILD)/$(KERNEL_MODULES_
 PRODUCT_PACKAGES += android.hardware.keymaster@4.1.vendor
 
 # KProfiles
-PRODUCT_PACKAGES += \
-    KProfiles
+PRODUCT_PACKAGES += KProfiles
 
 # Media (Device)
 PRODUCT_COPY_FILES += \
@@ -209,12 +207,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += android.hardware.lights-sony
 
 # Native Libraries
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
 # Neural Networks
-PRODUCT_PACKAGES += \
-    android.hardware.neuralnetworks@1.3.vendor
+PRODUCT_PACKAGES += android.hardware.neuralnetworks@1.3.vendor
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -236,7 +232,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.uicc.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.uicc.xml \
-    frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
 
 # Overlay Packages
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -260,12 +256,10 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti \
-    android.hardware.power@1.2.vendor \
-    vendor.qti.hardware.perf@2.2.vendor
+    android.hardware.power@1.2.vendor
 
 # Perf
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -280,8 +274,7 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libprotobuf-cpp-lite.so
 
 # QCC
-PRODUCT_PACKAGES += \
-    libgrpc++_unsecure.vendor
+PRODUCT_PACKAGES += libgrpc++_unsecure.vendor
 
 # QTI Components
 TARGET_COMMON_QTI_COMPONENTS := \
@@ -324,7 +317,7 @@ PRODUCT_PACKAGES += \
     android.hardware.secure_element@1.2-service \
     android.hardware.secure_element@1.0.vendor \
     android.hardware.secure_element@1.1.vendor \
-    android.hardware.secure_element@1.2.vendor \
+    android.hardware.secure_element@1.2.vendor
 
 # SDK
 BOARD_SYSTEMSDK_VERSIONS := 30
@@ -350,12 +343,12 @@ PRODUCT_PACKAGES += \
     libsensorndkbridge
 
 # System Helper
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.systemhelper@1.0.vendor
+PRODUCT_PACKAGES += vendor.qti.hardware.systemhelper@1.0.vendor
 
 # Soong Namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
+    $(DEVICE_PATH) \
     hardware/sony
 
 # Sony Display Interface
@@ -391,12 +384,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENABLE_UFFD_GC := false
 
 # Vendor libstdc++
-PRODUCT_PACKAGES += \
-    libstdc++_vendor
+PRODUCT_PACKAGES += libstdc++_vendor
 
 # Vendor Service Manager
-PRODUCT_PACKAGES += \
-    vndservicemanager
+PRODUCT_PACKAGES += vndservicemanager
 
 # QTI Service Tracker
 PRODUCT_PACKAGES += \
@@ -405,8 +396,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
 # WLAN
-PRODUCT_COPY_FILES += \
-    device/qcom/wlan/lahaina/WCNSS_qcom_cfg_wlan.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.init
+PRODUCT_COPY_FILES += device/qcom/wlan/lahaina/WCNSS_qcom_cfg_wlan.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.init
 
 # Xperia Modules | Xperia Extras
 $(call inherit-product, hardware/sony/XperiaModules.mk)
