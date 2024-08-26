@@ -199,6 +199,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>vendor.nxp.nxpese</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>INxpEse</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <!-- secure element -->
     <hal format="hidl">
         <name>android.hardware.secure_element</name>
@@ -208,11 +217,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ISecureElement</name>
             <instance>SIM1</instance>
             <instance>SIM2</instance>
-            <instance>eSE1</instance>
         </interface>
         <fqname>@1.2::ISecureElement/SIM1</fqname>
         <fqname>@1.2::ISecureElement/SIM2</fqname>
-        <fqname>@1.2::ISecureElement/eSE1</fqname>
     </hal>
     <!-- eSEPowerManager -->
     <hal format="hidl">
@@ -617,9 +624,19 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.bluetooth.a2dp</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IBluetoothAudioOffload</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IBluetoothAudioOffload/default</fqname>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.bluetooth.audio</name>
         <transport>hwbinder</transport>
-        <version>2.1</version>
+        <version>2.2</version>
         <interface>
             <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>

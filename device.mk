@@ -105,6 +105,10 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
+    android.hardware.bluetooth.audio@2.0-impl \
+    android.hardware.bluetooth.audio@2.1-impl \
+    android.hardware.bluetooth.a2dp@1.0 \
+    android.hardware.bluetooth.a2dp@1.0.vendor \
     libbthost_if \
     libbthost_if.vendor \
     libldacBT_bco.vendor
