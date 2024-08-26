@@ -92,7 +92,7 @@ index 0000000..1a03173
 +        "remote":       "aospa",
 +        "repository":   "AOSPA/android_hardware_qcom_gps",
 +        "target_path":  "hardware/qcom/gps",
-+        "revision":     "uvite-legacy-component"
++        "revision":     "uvite-888"
 +    },
 +    {
 +        "remote":       "aospa",
