@@ -30,6 +30,7 @@ case $choice in
         cd frameworks/base
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-SystemUI-Follow-monet-theme-on-privacy-indicators.patch
+        git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-DisplayUtils-Introduce-getScaleFactor.patch
         cd ../..
         cd hardware/libhardware
         git reset --hard aospa/uvite

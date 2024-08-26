@@ -1,0 +1,181 @@
+From e50f4064c3b977ee309afa41473f77b88a57deb2 Mon Sep 17 00:00:00 2001
+From: AnierinB <anierin@evolution-x.org>
+Date: Tue, 22 Nov 2022 20:40:55 +0000
+Subject: [PATCH] DisplayUtils: Introduce getScaleFactor
+
+Gets the display size ratio for the current resolution vs the maximum
+supported resolution.
+
+Start by applying this to physical_power_button_center_screen_location_y
+and sfpsProps so we can accurately scale them down based on the current
+resolution.
+
+Change-Id: Idfbf8e70664226919b603d92616104c09e94e3d1
+---
+ core/java/android/util/DisplayUtils.java       | 18 ++++++++++++++++++
+ .../systemui/biometrics/SideFpsController.kt   |  7 +++++--
+ .../keyguard/KeyguardViewMediator.java         |  8 ++++++--
+ .../keyguard/WakefulnessLifecycle.java         | 15 +++++++--------
+ .../statusbar/phone/CentralSurfacesImpl.java   |  8 ++++++--
+ 5 files changed, 42 insertions(+), 14 deletions(-)
+
+diff --git a/core/java/android/util/DisplayUtils.java b/core/java/android/util/DisplayUtils.java
+index cbb38a4ada31..91562c5d3f5d 100644
+--- a/core/java/android/util/DisplayUtils.java
++++ b/core/java/android/util/DisplayUtils.java
+@@ -16,8 +16,10 @@
+ 
+ package android.util;
+ 
++import android.content.Context;
+ import android.content.res.Resources;
+ import android.view.Display;
++import android.view.DisplayInfo;
+ 
+ import com.android.internal.R;
+ 
+@@ -83,4 +85,20 @@ public class DisplayUtils {
+         final float heightRatio = (float) currentHeight / physicalHeight;
+         return Math.min(widthRatio, heightRatio);
+     }
++
++    /**
++     * Get the display size ratio for the current resolution vs the maximum supported
++     * resolution.
++     */
++    public static float getScaleFactor(Context context) {
++        DisplayInfo displayInfo = new DisplayInfo();
++        context.getDisplay().getDisplayInfo(displayInfo);
++        final Display.Mode maxDisplayMode =
++                getMaximumResolutionDisplayMode(displayInfo.supportedModes);
++        final float scaleFactor = getPhysicalPixelDisplaySizeRatio(
++                maxDisplayMode.getPhysicalWidth(), maxDisplayMode.getPhysicalHeight(),
++                displayInfo.getNaturalWidth(), displayInfo.getNaturalHeight());
++
++        return scaleFactor;
++    }
+ }
+diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/SideFpsController.kt b/packages/SystemUI/src/com/android/systemui/biometrics/SideFpsController.kt
+index eb6864d91ba4..f0b9aaa68966 100644
+--- a/packages/SystemUI/src/com/android/systemui/biometrics/SideFpsController.kt
++++ b/packages/SystemUI/src/com/android/systemui/biometrics/SideFpsController.kt
+@@ -32,6 +32,7 @@ import android.hardware.fingerprint.FingerprintManager
+ import android.hardware.fingerprint.FingerprintSensorPropertiesInternal
+ import android.hardware.fingerprint.ISidefpsController
+ import android.os.Handler
++import android.util.DisplayUtils
+ import android.util.Log
+ import android.util.RotationUtils
+ import android.view.Display
+@@ -329,14 +330,16 @@ constructor(
+         val displayHeight = if (isDefaultOrientation) size.height() else size.width()
+         val boundsWidth = if (isDefaultOrientation) bounds.width() else bounds.height()
+         val boundsHeight = if (isDefaultOrientation) bounds.height() else bounds.width()
++        val scaleFactor = DisplayUtils.getScaleFactor(context)
++        val locationY = (scaleFactor * overlayOffsets.sensorLocationY).toInt()
+ 
+         val sensorBounds =
+             if (overlayOffsets.isYAligned()) {
+                 Rect(
+                     displayWidth - boundsWidth,
+-                    overlayOffsets.sensorLocationY,
++                    locationY,
+                     displayWidth,
+-                    overlayOffsets.sensorLocationY + boundsHeight
++                    locationY + boundsHeight
+                 )
+             } else {
+                 Rect(
+diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/KeyguardViewMediator.java b/packages/SystemUI/src/com/android/systemui/keyguard/KeyguardViewMediator.java
+index 00ed5f0e70b6..d3e833c576b2 100644
+--- a/packages/SystemUI/src/com/android/systemui/keyguard/KeyguardViewMediator.java
++++ b/packages/SystemUI/src/com/android/systemui/keyguard/KeyguardViewMediator.java
+@@ -83,6 +83,7 @@ import android.provider.DeviceConfig;
+ import android.provider.Settings;
+ import android.telephony.SubscriptionManager;
+ import android.telephony.TelephonyManager;
++import android.util.DisplayUtils;
+ import android.util.Log;
+ import android.util.Slog;
+ import android.util.SparseBooleanArray;
+@@ -1446,8 +1447,11 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
+         mActivityLaunchAnimator = activityLaunchAnimator;
+         mScrimControllerLazy = scrimControllerLazy;
+ 
+-        mPowerButtonY = context.getResources().getDimensionPixelSize(
+-                R.dimen.physical_power_button_center_screen_location_y);
++        final float scaleFactor = DisplayUtils.getScaleFactor(mContext);
++        int positionY = (int) (scaleFactor * mContext.getResources().getDimensionPixelSize(
++                R.dimen.physical_power_button_center_screen_location_y));
++
++        mPowerButtonY = positionY;
+         mWindowCornerRadius = ScreenDecorationsUtils.getWindowCornerRadius(context);
+ 
+         mDreamOpenAnimationDuration = (int) DREAMING_ANIMATION_DURATION_MS;
+diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/WakefulnessLifecycle.java b/packages/SystemUI/src/com/android/systemui/keyguard/WakefulnessLifecycle.java
+index ffd8a0244a86..a27215b514b1 100644
+--- a/packages/SystemUI/src/com/android/systemui/keyguard/WakefulnessLifecycle.java
++++ b/packages/SystemUI/src/com/android/systemui/keyguard/WakefulnessLifecycle.java
+@@ -26,6 +26,7 @@ import android.os.PowerManager;
+ import android.os.RemoteException;
+ import android.os.Trace;
+ import android.util.DisplayMetrics;
++import android.util.DisplayUtils;
+ 
+ import androidx.annotation.Nullable;
+ 
+@@ -225,19 +226,17 @@ public class WakefulnessLifecycle extends Lifecycle<WakefulnessLifecycle.Observe
+      * Returns the point on the screen closest to the physical power button.
+      */
+     private Point getPowerButtonOrigin() {
++        final float scaleFactor = DisplayUtils.getScaleFactor(mContext);
++        int positionY = (int) (scaleFactor * mContext.getResources().getDimensionPixelSize(
++                R.dimen.physical_power_button_center_screen_location_y));
++
+         final boolean isPortrait = mContext.getResources().getConfiguration().orientation
+                 == Configuration.ORIENTATION_PORTRAIT;
+ 
+         if (isPortrait) {
+-            return new Point(
+-                    mDisplayMetrics.widthPixels,
+-                    mContext.getResources().getDimensionPixelSize(
+-                            R.dimen.physical_power_button_center_screen_location_y));
++            return new Point(mDisplayMetrics.widthPixels, positionY);
+         } else {
+-            return new Point(
+-                    mContext.getResources().getDimensionPixelSize(
+-                            R.dimen.physical_power_button_center_screen_location_y),
+-                    mDisplayMetrics.heightPixels);
++            return new Point(positionY, mDisplayMetrics.heightPixels);
+         }
+     }
+ 
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/CentralSurfacesImpl.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/CentralSurfacesImpl.java
+index 77d9ee62abce..2df64557bf5e 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/CentralSurfacesImpl.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/CentralSurfacesImpl.java
+@@ -82,6 +82,7 @@ import android.service.notification.StatusBarNotification;
+ import android.text.TextUtils;
+ import android.util.ArraySet;
+ import android.util.DisplayMetrics;
++import android.util.DisplayUtils;
+ import android.util.EventLog;
+ import android.util.IndentingPrintWriter;
+ import android.util.Log;
+@@ -2210,8 +2211,11 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
+             mStatusBarKeyguardViewManager.updateResources();
+         }
+ 
+-        mPowerButtonReveal = new PowerButtonReveal(mContext.getResources().getDimensionPixelSize(
+-                com.android.systemui.R.dimen.physical_power_button_center_screen_location_y));
++        final float scaleFactor = DisplayUtils.getScaleFactor(mContext);
++        int positionY = (int) (scaleFactor * mContext.getResources().getDimensionPixelSize(
++                R.dimen.physical_power_button_center_screen_location_y));
++
++        mPowerButtonReveal = new PowerButtonReveal(positionY);
+     }
+ 
+     protected void handleVisibleToUserChanged(boolean visibleToUser) {
+-- 
+2.34.1
+
