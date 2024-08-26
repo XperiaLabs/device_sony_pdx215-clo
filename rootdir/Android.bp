@@ -52,6 +52,13 @@ prebuilt_etc {
     device_specific: true,
 }
 
+prebuilt_etc {
+    name: "ueventd.pdx215.rc",
+    filename: "ueventd.rc",
+    src: "ueventd.pdx215.rc",
+    device_specific: true,
+}
+
 sh_binary {
     name: "init.qcom.msim.sh",
     src: "init.qcom.msim.sh",

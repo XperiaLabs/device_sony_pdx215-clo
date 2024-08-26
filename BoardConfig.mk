@@ -5,8 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Bypass Errors
-ALLOW_MISSING_DEPENDENCIES := true
+# Flags
 NEED_AIDL_NDK_PLATFORM_BACKEND := true
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true

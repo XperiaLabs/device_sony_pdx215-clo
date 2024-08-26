@@ -31,6 +31,7 @@ TARGET_BOOTLOADER_BOARD_NAME := lahaina
 
 # ANT+
 PRODUCT_PACKAGES += \
+    AntHalService-Soong \
     com.dsi.ant@1.0.vendor
 
 # Audio
@@ -108,10 +109,7 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl \
     android.hardware.bluetooth.audio@2.1-impl \
     android.hardware.bluetooth.a2dp@1.0 \
-    android.hardware.bluetooth.a2dp@1.0.vendor \
-    libbthost_if \
-    libbthost_if.vendor \
-    libldacBT_bco.vendor
+    android.hardware.bluetooth.a2dp@1.0.vendor
 
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.vendor.btstack.enable.lpa=true
