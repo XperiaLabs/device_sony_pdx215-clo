@@ -31,6 +31,17 @@ case $choice in
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-SystemUI-Follow-monet-theme-on-privacy-indicators.patch
         cd ../..
+        cd hardware/libhardware
+        git reset --hard aospa/uvite
+        git am ../../device/sony/pdx215/configs/patches/hardware_libhardware/0001-audio_amplifier-pass-amplifier_device-pointer-to-cal.patch
+        cd ../..
+        echo 'Applying patches to hardware/libhardware'
+        echo -e
+        cd vendor/qcom/opensource/audio-hal/primary-hal
+        git reset --hard uvite-888
+        git am ../../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_audio-hal_primary-hal/0001-audio_amplifier-pass-amplifier_device-pointer-to-cal.patch
+        cd ../../../../..
+        echo 'Applying patches to vendor/qcom/opensource/audio-hal/primary-hal'
         echo -e
         echo 'Done Applying all Patches!'
         echo -e
