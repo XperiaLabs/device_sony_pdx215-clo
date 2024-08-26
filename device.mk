@@ -73,8 +73,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.primary.default \
-    sound_trigger.primary.lahaina \
-    android.hardware.audio.sounddose-vendor-impl
+    sound_trigger.primary.lahaina
 
 # AuthSecret HAL
 PRODUCT_PACKAGES += android.hardware.authsecret@1.0-service
