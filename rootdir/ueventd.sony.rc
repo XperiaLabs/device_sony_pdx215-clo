@@ -4,5 +4,42 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Add TA block device permission
+/dev/block/platform/soc/1d84000.ufshc/by-name/TA        0660   oem_2997   oem_2997
+
 # Charger
 /sys/class/battchg_ext  smart_charging_interruption  0660  system  system
+
+# The DIAG device node is not world writable/readable.
+/dev/hgsl                 0666   system     system
+
+# QVR
+/dev/bus/usb/*                      0660  root    usb
+/dev/hidraw*                        0660  root    usb
+
+# Rawdump
+/dev/block/platform/soc/*/by-name/rawdump       0660   root     system
+
+# WLAN
+/sys/devices/platform/soc/*.qcom,icnss/net/wlan*/queues/rx-* rps_cpus             0660   system     system
+/sys/devices/platform/soc/17a10040.qcom,wcn6750/net/wlan*/queues/rx-* rps_cpus    0660   system     system
+/dev/hw_random            0600   root       root
+
+# Audio Permissions
+/dev/spidev22.0           0660   system     audio
+/dev/spidev10.0           0660   system     audio
+
+# NFC
+/dev/pn553                 0660    nfc         nfc
+
+# eSE Device
+/dev/p73                   0660   secure_element secure_element
+
+# TZDBG
+/dev/tzdbg_*              0440   root       root
+
+# SYSFS Display
+/sys/class/drm/sde-crtc-*   lineptr_value            0664    system  graphics
+
+# FP Sensor
+/dev/esfp0 0660 system system

@@ -98,6 +98,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.qccvndhal</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IQccvndhal</name>
+            <instance>qccvndhal</instance>
+        </interface>
+        <fqname>@1.0::IQccvndhal/qccvndhal</fqname>
+    </hal>
     <!-- DSP Service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.dsp</name>
@@ -217,9 +227,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ISecureElement</name>
             <instance>SIM1</instance>
             <instance>SIM2</instance>
+            <instance>eSE1</instance>
         </interface>
         <fqname>@1.2::ISecureElement/SIM1</fqname>
         <fqname>@1.2::ISecureElement/SIM2</fqname>
+        <fqname>@1.2::ISecureElement/eSE1</fqname>
     </hal>
     <!-- eSEPowerManager -->
     <hal format="hidl">
@@ -528,7 +540,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl">
         <name>vendor.qti.data.factory</name>
         <transport>hwbinder</transport>
-        <version>2.8</version>
+        <version>2.4</version>
         <interface>
             <name>IFactory</name>
             <instance>default</instance>

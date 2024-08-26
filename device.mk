@@ -141,7 +141,6 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += android.hardware.biometrics.fingerprint@2.1.vendor
-
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 # Gatekeeper
@@ -297,6 +296,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
 TARGET_GPS_COMPONENT_VARIANT := gps
 
 # Radio
+ENABLE_VENDOR_RIL_SERVICE := true
 PRODUCT_PACKAGES += \
     libjson \
     librmnetctl \

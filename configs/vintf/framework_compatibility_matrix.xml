@@ -40,6 +40,17 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.secure_element</name>
+        <transport>hwbinder</transport>
+        <version>1.0-2</version>
+        <interface>
+            <name>ISecureElement</name>
+            <instance>SIM1</instance>
+            <instance>SIM2</instance>
+            <instance>eSE1</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.radio</name>
         <version>1.0-6</version>
         <interface>
@@ -118,11 +129,30 @@
        </interface>
     </hal>
     <hal format="hidl">
+        <name>vendor.qti.gnss</name>
+        <version>1.0-2</version>
+        <version>2.0-1</version>
+        <version>3.0</version>
+        <version>4.0-3</version>
+        <interface>
+            <name>ILocHidlGnss</name>
+            <instance>gnss_vendor</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.qti.data.factory</name>
-        <version>2.0-8</version>
+        <version>2.0-4</version>
         <interface>
             <name>IFactory</name>
             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.qccvndhal</name>
+        <version>1.0</version>
+        <interface>
+            <name>IQccvndhal</name>
+            <instance>qccvndhal</instance>
         </interface>
     </hal>
     <hal format="aidl" optional="true">
