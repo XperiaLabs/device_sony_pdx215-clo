@@ -292,6 +292,9 @@ BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     vendor \
     vendor_dlkm
 
+# RIL
+ENABLE_VENDOR_RIL_SERVICE := true
+
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
@@ -324,14 +327,10 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 TARGET_POWER_FEATURE_EXT_LIB := //$(DEVICE_PATH):libpowerfeature_ext_sony_sagami
 
 # Properties
-TARGET_ODM_PROP += \
-    $(DEVICE_PATH)/configs/properties/odm.prop
-
-TARGET_SYSTEM_PROP += \
-    $(DEVICE_PATH)/configs/properties/system.prop
-
-TARGET_VENDOR_PROP += \
-    $(DEVICE_PATH)/configs/properties/vendor.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
+TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/properties/system_ext.prop
 
 # OTA Assert
 TARGET_OTA_ASSERT_DEVICE := pdx215,XQ-BC42,XQ-BC52,XQ-BC62,XQ-BC72,SO-51B,SOG03,A101S

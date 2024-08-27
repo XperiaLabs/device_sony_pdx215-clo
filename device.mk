@@ -104,10 +104,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Bluetooth
 PRODUCT_PACKAGES += libldacBT_bco
-
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.vendor.btstack.enable.lpa=true
+PRODUCT_SYSTEM_EXT_PROPERTIES += persist.vendor.btstack.enable.lpa=true
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -205,6 +202,10 @@ PRODUCT_PACKAGES += android.hardware.lights-sony
 # Native Libraries
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
+# Net
+PRODUCT_PACKAGES += \
+    android.system.net.netd@1.1.vendor
+
 # Neural Networks
 PRODUCT_PACKAGES += android.hardware.neuralnetworks@1.3.vendor
 
@@ -287,7 +288,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     media \
     overlay \
     perf \
-    telephony \
     usb \
     vibrator \
     wfd \
@@ -296,10 +296,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
 TARGET_GPS_COMPONENT_VARIANT := gps
 
 # Radio
-ENABLE_VENDOR_RIL_SERVICE := true
 PRODUCT_PACKAGES += \
     libjson \
-    librmnetctl \
     android.hardware.radio@1.6.vendor \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
@@ -362,6 +360,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0.vendor \
     libshim_libcdfw_remote_api
+
 # Shim (Lights HAL)
 PRODUCT_PACKAGES += \
     android.hardware.light-V1-ndk_platform.vendor \
@@ -374,11 +373,17 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so
 
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml
+
 # Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0 \
-    android.hardware.thermal@2.0.vendor \
-    android.hardware.thermal@2.0-service.qti
+PRODUCT_PACKAGES += android.hardware.thermal@2.0-service.qti
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perf/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
 # UFFD
 PRODUCT_ENABLE_UFFD_GC := false
@@ -395,7 +400,8 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.1.vendor \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
-# WLAN
+# Wi-Fi
+PRODUCT_PACKAGES += android.hardware.wifi.hostapd@1.0.vendor
 PRODUCT_COPY_FILES += device/qcom/wlan/lahaina/WCNSS_qcom_cfg_wlan.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.init
 
 # Xperia Modules | Xperia Extras

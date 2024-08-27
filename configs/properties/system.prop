@@ -7,30 +7,17 @@ persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 camera.disable_zsl_mode=true
 log.tag.CHIUSECASE=ERROR
 
+# CNE
+persist.vendor.cne.feature=1
+
 # Display
 debug.gralloc.gfx_ubwc_disable=0
 persist.vendor.color.matrix=2
 
 # IMS
-ro.telephony.default_cdma_sub=0
-ro.vendor.radio.5g=3
-persist.data.iwlan.enable=true
-persist.data.iwlan=1
-persist.data.iwlan.ipsec.ap=1
-persist.radio.calls.on.ims=1
-persist.radio.data_con_rprt=1
-persist.radio.data_ltd_sys_ind=1
-persist.radio.dynamic_sar=false
-persist.radio.NO_STAPA=1
-persist.radio.rat_on=combine
-persist.radio.VT_HYBRID_ENABLE=1
-persist.vendor.radio.data_con_rprt=1
-persist.vendor.radio.enable_temp_dds=true
-persist.vendor.radio.redir_party_num=1
-persist.vendor.radio.force_on_dc=true
-persist.vendor.radio.calls.on.ims=1
-persist.vendor.radio.data_ltd_sys_ind=1
-persist.vendor.radio.force_ltd_sys_ind=1
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+persist.dbg.wfc_avail_ovr=1
 
 # Media
 media.stagefright.thumbnail.prefer_hw_codecs=true
