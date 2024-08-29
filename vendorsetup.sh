@@ -18,6 +18,7 @@ case $choice in
         git rebase --abort
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0001-products-Introduce-Sony-Xperia-1-III-pdx215.patch
+        git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0002-soong-Add-TARGET_USES_EGL_DISPLAY_ARRAY-conditional.patch
         cd ../..
         echo -e
         echo 'Applying patches to vendor/qcom/opensource/usb'
@@ -45,6 +46,14 @@ case $choice in
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0002-DisplayUtils-Introduce-getScaleFactor.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0003-SystemUI-Fix-SB-paddings.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0004-services-Introduce-X-reality-display-engine-mode-1-2.patch
+        cd ../..
+        echo -e
+        echo 'Applying patches to frameworks/native'
+        cd frameworks/native
+        git am --abort
+        git rebase --abort
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/frameworks_native/0001-EGL-Conditionally-revert-commit-a9550f3.patch
         cd ../..
         echo -e
         echo 'Applying patches to hardware/libhardware'
