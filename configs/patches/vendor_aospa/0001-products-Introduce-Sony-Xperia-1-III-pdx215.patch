@@ -60,9 +60,9 @@ index 0000000..1a03173
 +    },
 +    {
 +        "remote":       "xperialabs",
-+        "repository":   "kernel_sony_sagami",
++        "repository":   "kernel_sony_sagami-clo",
 +        "target_path":  "kernel/msm-5.4",
-+        "revision":     "HELLSING-uvite"
++        "revision":     "uvite"
 +    },
 +    {
 +        "remote":       "aospa",
@@ -154,8 +154,8 @@ index 0000000..caaca10
 +PRODUCT_GMS_CLIENTID_BASE := android-sonymobile
 +
 +PRODUCT_BUILD_PROP_OVERRIDES += \
-+    PRIVATE_BUILD_DESC="XQ-EC72-user 14 69.0.A.2.32 069000A002003200522519484 release-keys"
++    PRIVATE_BUILD_DESC="XQ-BC72-user 13 61.2.A.0.472A 061002A0000472A0046651803 release-keys"
 +
-+BUILD_FINGERPRINT := Sony/XQ-EC72/XQ-EC72:14/69.0.A.2.32/069000A002003200522519484:user/release-keys
++BUILD_FINGERPRINT := Sony/XQ-BC72/XQ-BC72:13/61.2.A.0.472A/061002A0000472A0046651803:user/release-keys
 
 

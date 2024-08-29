@@ -73,7 +73,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.primary.default \
-    sound_trigger.primary.lahaina
+    sound_trigger.primary.lahaina \
+    libspkrprot
 
 # AuthSecret HAL
 PRODUCT_PACKAGES += android.hardware.authsecret@1.0-service
@@ -203,8 +204,7 @@ PRODUCT_PACKAGES += android.hardware.lights-sony
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/linker/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
 # Net
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor
+PRODUCT_PACKAGES += android.system.net.netd@1.1.vendor
 
 # Neural Networks
 PRODUCT_PACKAGES += android.hardware.neuralnetworks@1.3.vendor
@@ -216,7 +216,8 @@ PRODUCT_PACKAGES += \
     Tag \
     NfcNci \
     nqnfcinfo \
-    libchrome.vendor
+    libchrome.vendor \
+    android.hardware.secure_element@1.2.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf \
@@ -249,12 +250,6 @@ PRODUCT_PACKAGES += \
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# Power
-PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
-    android.hardware.power@1.2.vendor
-
 # Perf
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/perf/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
@@ -288,33 +283,21 @@ TARGET_COMMON_QTI_COMPONENTS := \
     media \
     overlay \
     perf \
+    telephony \
     usb \
     vibrator \
-    wfd \
-    wlan
+    wfd
 
 TARGET_GPS_COMPONENT_VARIANT := gps
 
-# Radio
+# RIL
 PRODUCT_PACKAGES += \
-    libjson \
-    android.hardware.radio@1.6.vendor \
-    android.hardware.radio.config@1.3.vendor \
+    android.hardware.radio@1.5.vendor \
+    android.hardware.radio.config@1.2.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.radio-V1-ndk.vendor \
-    android.hardware.radio.config-V1-ndk.vendor \
-    android.hardware.radio.data-V1-ndk.vendor \
-    android.hardware.radio.messaging-V1-ndk.vendor \
-    android.hardware.radio.modem-V1-ndk.vendor \
-    android.hardware.radio.network-V1-ndk.vendor \
-    android.hardware.radio.sim-V1-ndk.vendor \
-    android.hardware.radio.voice-V1-ndk.vendor \
-    android.hardware.secure_element@1.0-service \
-    android.hardware.secure_element@1.1-service \
-    android.hardware.secure_element@1.2-service \
-    android.hardware.secure_element@1.0.vendor \
-    android.hardware.secure_element@1.1.vendor \
-    android.hardware.secure_element@1.2.vendor
+    libxml2 \
+    libjson \
+    libjson.vendor
 
 # SDK
 BOARD_SYSTEMSDK_VERSIONS := 30
@@ -356,6 +339,11 @@ PRODUCT_PACKAGES += \
     vendor.semc.hardware.display@2.3.vendor \
     vendor.semc.hardware.display@2.4.vendor
 
+# Sony Charger Interface
+PRODUCT_PACKAGES += \
+    vendor.sony.charger \
+    vendor.sony.charger-service
+
 # Shims
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0.vendor \
@@ -372,12 +360,6 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml
 
 # Thermal
 PRODUCT_PACKAGES += android.hardware.thermal@2.0-service.mock
@@ -400,24 +382,46 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.1.vendor \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
-# Wi-Fi
-PRODUCT_PACKAGES += android.hardware.wifi.hostapd@1.0.vendor
-PRODUCT_COPY_FILES += device/qcom/wlan/lahaina/WCNSS_qcom_cfg_wlan.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.init
+# WiFi
+PRODUCT_PACKAGES += \
+    android.hardware.wifi-service \
+    hostapd \
+    hostapd.accept \
+    hostapd.deny \
+    hostapd_cli \
+    hostapd_default.conf \
+    sigma_dut \
+    libwpa_client \
+    libwifi-hal-ctrl \
+    libwifi-hal-qcom \
+    vendor.qti.hardware.wifi.hostapd@1.2.vendor \
+    vendor.qti.hardware.wifi.supplicant@2.1.vendor \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
+# Wi-Fi Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
+    frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
+    frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # Xperia Modules | Xperia Extras
 $(call inherit-product, hardware/sony/XperiaModules.mk)
-#$(call inherit-product, vendor/sony/extra/Sagami/extra.mk)
+$(call inherit-product, vendor/sony/extra/Sagami/extra.mk)
 
 # Xperia Modules - Flags
-#TARGET_SHIPS_XPERIA_SETTINGS_MENU := true
-#TARGET_SUPPORTS_IMAGE_ENHANCEMENT := true
-#TARGET_SUPPORTS_BATTERY_CARE := true
+TARGET_SHIPS_XPERIA_SETTINGS := true
+TARGET_SUPPORTS_IMAGE_ENHANCEMENT := true
+TARGET_SUPPORTS_BATTERY_CARE := true
 TARGET_SUPPORTS_HIGH_REFRESH_RATE := true
 TARGET_SUPPORTS_HIGH_POLLING_RATE := true
 
 # Xperia Extras - Flags
-#TARGET_SHIPS_SONY_FRAMEWORK := true
-#TARGET_SHIPS_SONY_CAMERA := true
-#TARGET_SHIPS_SONY_APPS := true
-#TARGET_SUPPORTS_GAME_CONTROLLERS := true
-#TARGET_SUPPORTS_XPERIA_STREAM := true
+TARGET_SHIPS_SONY_CAMERA := true
+TARGET_SUPPORTS_XPERIA_STREAM := true
+TARGET_SUPPORTS_GAME_CONTROLLERS := true
+TARGET_SHIPS_SONY_FRAMEWORK := true
+TARGET_SHIPS_SONY_APPS := true

@@ -1,0 +1,28 @@
+From 7207b0a46271773676ca5c36ec9488ccfceea634 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Sun, 1 Sep 2024 14:15:48 +0000
+Subject: [PATCH] system: telephony: Build older radio packages
+
+Change-Id: Ic0e1fa2883252df28ea2ed7a673c10d45e045273
+---
+ system/telephony/qti-telephony.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/system/telephony/qti-telephony.mk b/system/telephony/qti-telephony.mk
+index 2c45bdb..a279021 100644
+--- a/system/telephony/qti-telephony.mk
++++ b/system/telephony/qti-telephony.mk
+@@ -17,8 +17,8 @@ SYSTEM_EXT_MANIFEST_FILES += $(QCOM_COMMON_PATH)/system/telephony/atcmdfwd-saidl
+ 
+ # Packages
+ PRODUCT_PACKAGES += \
+-    android.hardware.radio@1.6 \
+-    android.hardware.radio.config@1.3 \
++    android.hardware.radio@1.5 \
++    android.hardware.radio.config@1.2 \
+     android.hardware.radio.deprecated@1.0 \
+     android.system.net.netd@1.1 \
+     libjson \
+-- 
+2.34.1
+

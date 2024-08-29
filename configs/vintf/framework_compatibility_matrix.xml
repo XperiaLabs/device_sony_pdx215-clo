@@ -42,7 +42,7 @@
     <hal format="hidl" optional="true">
         <name>android.hardware.secure_element</name>
         <transport>hwbinder</transport>
-        <version>1.0-2</version>
+        <version>1.0-3</version>
         <interface>
             <name>ISecureElement</name>
             <instance>SIM1</instance>
@@ -52,7 +52,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio</name>
-        <version>1.0-6</version>
+        <version>1.0-5</version>
         <interface>
             <name>IRadio</name>
             <instance>slot1</instance>
@@ -66,67 +66,50 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio.config</name>
-        <version>1.0-3</version>
+        <version>1.0-2</version>
         <interface>
             <name>IRadioConfig</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.data</name>
-       <interface>
-           <name>IRadioData</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
+    <hal format="aidl">
+        <name>android.hardware.wifi</name>
+        <version>1</version>
+        <interface>
+            <name>IWifi</name>
+            <instance>default</instance>
+        </interface>
     </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.ims</name>
-       <interface>
-           <name>IRadioIms</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
+    <hal format="hidl">
+        <name>android.hardware.wifi.hostapd</name>
+        <version>1.2</version>
+        <interface>
+            <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
     </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.messaging</name>
-       <interface>
-           <name>IRadioMessaging</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
+    <hal format="aidl">
+        <name>android.hardware.wifi.supplicant</name>
+        <interface>
+            <name>ISupplicant</name>
+            <instance>default</instance>
+        </interface>
     </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.modem</name>
-       <interface>
-           <name>IRadioModem</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
+    <hal format="hidl" optional="false">
+        <name>android.system.wifi.keystore</name>
+        <version>1.0</version>
+        <interface>
+            <name>IKeystore</name>
+            <instance>default</instance>
+        </interface>
     </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.network</name>
-       <interface>
-           <name>IRadioNetwork</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.sim</name>
-       <interface>
-           <name>IRadioSim</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-       <name>android.hardware.radio.voice</name>
-       <interface>
-           <name>IRadioVoice</name>
-           <instance>slot1</instance>
-           <instance>slot2</instance>
-       </interface>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.keystore</name>
+        <version>1.0</version>
+        <interface>
+            <name>IKeystoreExt</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.gnss</name>
@@ -145,6 +128,14 @@
         <version>2.0-3</version>
         <interface>
             <name>IFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.ims.factory</name>
+        <version>1.0-1</version>
+        <interface>
+            <name>IImsFactory</name>
             <instance>default</instance>
         </interface>
     </hal>

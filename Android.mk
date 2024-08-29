@@ -8,8 +8,7 @@ LOCAL_PATH := $(call my-dir)
 
 
 ifneq ($(filter pdx215,$(TARGET_DEVICE)),)
-  subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
-  $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
+include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
 
@@ -42,7 +41,6 @@ $(RFS_APQ_GNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /vendor/firmware $@/readonly/vendor/firmware
 
 ### MDM
-
 RFS_MDM_ADSP_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/mdm/adsp/
 $(RFS_MDM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating RFS MDM ADSP folder structure: $@"
@@ -122,7 +120,6 @@ $(RFS_MDM_WPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /vendor/firmware $@/readonly/vendor/firmware
 
 ### MSM
-
 RFS_MSM_ADSP_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/msm/adsp/
 $(RFS_MSM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating RFS MSM ADSP folder structure: $@"
@@ -184,9 +181,10 @@ $(RFS_MSM_WPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /vendor/firmware_mnt $@/readonly/firmware
 	$(hide) ln -sf /vendor/firmware $@/readonly/vendor/firmware
 
-WIFI_FIRMWARE_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware/
+WIFI_FIRMWARE_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware
 $(WIFI_FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating wifi firmware symlinks: $@"
+	@rm -rf $@/wlan/*
 	@mkdir -p $@/wlan/qca_cld
 	$(hide) ln -sf /vendor/etc/wifi/regdb.bin $@/regdb.bin
 	$(hide) ln -sf /vendor/etc/wifi/bdwlan.e47 $@/bdwlan.e47
@@ -211,11 +209,5 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(RFS_MSM_SLPI_SYMLINKS) \
     $(RFS_MSM_WPSS_SYMLINKS) \
     $(WIFI_FIRMWARE_SYMLINKS)
-
-# Kernel Headers
-$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr: $(wildcard device/sony/pdx215-kernel/kernel-headers/*)
-	rm -rf $@
-	mkdir -p $@/include
-	cp -a device/sony/pdx215-kernel/kernel-headers/. $@/include
 
 endif
