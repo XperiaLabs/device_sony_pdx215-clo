@@ -411,6 +411,7 @@ PRODUCT_COPY_FILES += \
 # Xperia Modules | Xperia Extras
 $(call inherit-product, hardware/sony/XperiaModules.mk)
 $(call inherit-product, vendor/sony/extra/Sagami/extra.mk)
+$(call inherit-product, vendor/sony/extra/Sagami/camera/camera.mk)
 
 # Xperia Modules - Flags
 TARGET_SHIPS_XPERIA_SETTINGS := true
@@ -420,6 +421,7 @@ TARGET_SUPPORTS_HIGH_REFRESH_RATE := true
 TARGET_SUPPORTS_HIGH_POLLING_RATE := true
 
 # Xperia Extras - Flags
+TARGET_SHIPS_PHOTO_PRO_LEGACY := true
 TARGET_SHIPS_SONY_CAMERA := true
 TARGET_SUPPORTS_XPERIA_STREAM := true
 TARGET_SUPPORTS_GAME_CONTROLLERS := true
