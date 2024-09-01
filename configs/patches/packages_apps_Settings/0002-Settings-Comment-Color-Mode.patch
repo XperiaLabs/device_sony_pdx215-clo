@@ -1,0 +1,31 @@
+From 3d97f3aaa5b35ff8293ec6a617f36bdcf3f1b6d9 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Sun, 1 Sep 2024 15:09:31 +0000
+Subject: [PATCH] Settings: Comment Color Mode
+
+---
+ res/xml/display_settings.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/res/xml/display_settings.xml b/res/xml/display_settings.xml
+index 6a5da06..864887a 100644
+--- a/res/xml/display_settings.xml
++++ b/res/xml/display_settings.xml
+@@ -110,12 +110,12 @@
+             settings:controller="com.android.settings.display.NightDisplayPreferenceController"
+             settings:keywords="@string/keywords_display_night_display"/>
+ 
+-        <Preference
++        <!-- Preference
+             android:key="color_mode"
+             android:title="@string/color_mode_title"
+             android:fragment="com.android.settings.display.ColorModePreferenceFragment"
+             settings:controller="com.android.settings.display.ColorModePreferenceController"
+-            settings:keywords="@string/keywords_color_mode"/>
++            settings:keywords="@string/keywords_color_mode" -->
+     </PreferenceCategory>
+ 
+     <!--
+-- 
+2.34.1
+

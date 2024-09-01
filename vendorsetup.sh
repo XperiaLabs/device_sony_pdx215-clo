@@ -72,6 +72,7 @@ case $choice in
         git rebase --abort
         git reset --hard FETCH_HEAD
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
+        git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0002-Settings-Comment-Color-Mode.patch
         cd ../../..
         echo 'Applying patches to device/qcom/common'
         cd device/qcom/common
