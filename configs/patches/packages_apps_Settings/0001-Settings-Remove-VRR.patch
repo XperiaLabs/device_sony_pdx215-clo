@@ -1,0 +1,85 @@
+From 25afd7141cb74cfcfd0b56d725e99d6ba1c1ae65 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Sun, 1 Sep 2024 10:32:55 +0000
+Subject: [PATCH] Settings: Remove VRR
+
+---
+ .../settings/display/RefreshRateSettings.java | 24 +------------------
+ 1 file changed, 1 insertion(+), 23 deletions(-)
+
+diff --git a/src/com/android/settings/display/RefreshRateSettings.java b/src/com/android/settings/display/RefreshRateSettings.java
+index 0e91d00..885206d 100644
+--- a/src/com/android/settings/display/RefreshRateSettings.java
++++ b/src/com/android/settings/display/RefreshRateSettings.java
+@@ -21,7 +21,6 @@ import android.graphics.drawable.Drawable;
+ import android.util.Log;
+ 
+ import androidx.preference.PreferenceScreen;
+-import androidx.preference.SwitchPreference;
+ 
+ import com.android.settings.R;
+ import com.android.settings.search.BaseSearchIndexProvider;
+@@ -29,9 +28,6 @@ import com.android.settings.widget.RadioButtonPickerFragment;
+ import com.android.settingslib.search.SearchIndexable;
+ import com.android.settingslib.widget.CandidateInfo;
+ import com.android.settingslib.widget.FooterPreference;
+-import com.android.settingslib.widget.MainSwitchPreference;
+-import com.android.settingslib.widget.SelectorWithWidgetPreference;
+-import com.android.settingslib.widget.TopIntroPreference;
+ 
+ import java.util.List;
+ import java.util.stream.Collectors;
+@@ -41,11 +37,9 @@ import java.util.stream.Collectors;
+ public class RefreshRateSettings extends RadioButtonPickerFragment {
+ 
+     private static final String TAG = "RefreshRateSettings";
+-    private static final String KEY_VRR_PREF = "refresh_rate_vrr";
+ 
+     private Context mContext;
+     private RefreshRateUtils mUtils;
+-    private SwitchPreference mVrrSwitchPref;
+ 
+     @Override
+     public void onAttach(Context context) {
+@@ -61,16 +55,7 @@ public class RefreshRateSettings extends RadioButtonPickerFragment {
+ 
+     @Override
+     protected void addStaticPreferences(PreferenceScreen screen) {
+-        mVrrSwitchPref = new SwitchPreference(screen.getContext());
+-        mVrrSwitchPref.setKey(KEY_VRR_PREF);
+-        mVrrSwitchPref.setTitle(R.string.refresh_rate_vrr_title);
+-        mVrrSwitchPref.setSummary(R.string.refresh_rate_vrr_summary);
+-        mVrrSwitchPref.setOnPreferenceChangeListener((pref, newValue) -> {
+-            mUtils.setVrrEnabled((Boolean) newValue);
+-            return true;
+-        });
+-        screen.addPreference(mVrrSwitchPref);
+-        updateVrrPref();
++        // Removed VRR related code
+ 
+         final FooterPreference footerPreference = new FooterPreference(screen.getContext());
+         footerPreference.setTitle(R.string.refresh_rate_footer);
+@@ -87,12 +72,6 @@ public class RefreshRateSettings extends RadioButtonPickerFragment {
+                 .collect(Collectors.toList());
+     }
+ 
+-    private void updateVrrPref() {
+-        if (mVrrSwitchPref == null) return;
+-        mVrrSwitchPref.setEnabled(mUtils.isVrrPossible());
+-        mVrrSwitchPref.setChecked(mUtils.isVrrEnabled());
+-    }
+-
+     @Override
+     protected String getDefaultKey() {
+         return String.valueOf(mUtils.getCurrentRefreshRate());
+@@ -102,7 +81,6 @@ public class RefreshRateSettings extends RadioButtonPickerFragment {
+     protected boolean setDefaultKey(final String key) {
+         final int refreshRate = Integer.parseInt(key);
+         mUtils.setCurrentRefreshRate(refreshRate);
+-        updateVrrPref();
+         return true;
+     }
+ 
+-- 
+2.34.1
+

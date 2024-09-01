@@ -66,6 +66,13 @@ case $choice in
         git am ../../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_audio-hal_primary-hal/0001-audio_amplifier-pass-amplifier_device-pointer-to-cal.patch
         cd ../../../../..
         echo -e
+        echo 'Applying patches to packages/apps/Settings'
+        cd packages/apps/Settings
+        git am --abort
+        git rebase --abort
+        git reset --hard FETCH_HEAD
+        git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
+        cd ../../..
         echo 'Applying patches to device/qcom/common'
         cd device/qcom/common
         git am --abort
