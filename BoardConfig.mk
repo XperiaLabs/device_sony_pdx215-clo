@@ -93,6 +93,8 @@ DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/vintf/manifest_lahaina.xml \
     $(DEVICE_PATH)/configs/vintf/manifest_sony.xml
 
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
+
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_KERNEL_CMDLINE := \
