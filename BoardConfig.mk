@@ -116,8 +116,7 @@ BOARD_KERNEL_CMDLINE := \
     loop.max_part=7 \
     iptable_raw.raw_before_defrag=1 \
     ip6table_raw.raw_before_defrag=1 \
-    buildproduct=pdx215 \
-    androidboot.selinux=permissive
+    buildproduct=pdx215
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -344,8 +343,7 @@ BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # SEPolicy
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+include hardware/sony/sepolicy/qti/SEPolicy.mk
 
 # SELinux Neverallows
 ifdef SELINUX_IGNORE_NEVERALLOWS
