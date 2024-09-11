@@ -73,7 +73,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audio.primary.default \
-    sound_trigger.primary.lahaina \
     libspkrprot
 
 # AuthSecret HAL
