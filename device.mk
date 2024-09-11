@@ -77,7 +77,7 @@ PRODUCT_PACKAGES += \
     libspkrprot
 
 # AuthSecret HAL
-PRODUCT_PACKAGES += android.hardware.authsecret@1.0-service
+PRODUCT_PACKAGES += android.hardware.authsecret@1.0.vendor
 
 # Boot
 PRODUCT_PACKAGES += \
