@@ -8,6 +8,7 @@ camera.disable_zsl_mode=true
 log.tag.CHIUSECASE=ERROR
 
 # Display
+debug.sf.enable_hwc_vds=1
 debug.gralloc.gfx_ubwc_disable=0
 persist.vendor.color.matrix=2
 
