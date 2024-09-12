@@ -164,36 +164,6 @@ system_ext/lib64/com.qualcomm.qti.ant@1.0.so
 vendor/lib/hw/sound_trigger.primary.lahaina.so
 vendor/lib64/hw/sound_trigger.primary.lahaina.so
 
-# Audio FX Modules
-vendor/lib/libaudiokeymgr.so
-vendor/lib/libaudiosnpewrapper.so
-vendor/lib/libiVptApi.so
-vendor/lib/libiVptHkiDec.so
-vendor/lib/libiVptLibC.so
-vendor/lib/librebuffering.so
-vendor/lib/libznr.so
-vendor/lib/soundfx/libbundlewrapper1.so
-vendor/lib/soundfx/libbundlewrapper2.so
-vendor/lib/soundfx/libbundlewrapper3.so
-vendor/lib/soundfx/libbundlewrapper4.so
-vendor/lib/soundfx/libdnnrwrapper.so
-vendor/lib/soundfx/libswdap.so
-vendor/lib/soundfx/libznrwrapper.so
-vendor/lib64/libaudiokeymgr.so
-vendor/lib64/libiVptApi.so
-vendor/lib64/libiVptHkiDec.so
-vendor/lib64/libiVptLibC.so
-vendor/lib64/liboem_specific.so
-vendor/lib64/librebuffering.so
-vendor/lib64/soundfx/libbundlewrapper1.so
-vendor/lib64/soundfx/libbundlewrapper2.so
-vendor/lib64/soundfx/libbundlewrapper3.so
-vendor/lib64/soundfx/libbundlewrapper4.so
-vendor/lib64/soundfx/libdlbvol.so
-vendor/lib64/soundfx/libswdap.so
-vendor/lib64/soundfx/libswgamedap.so
-vendor/lib64/soundfx/libswvqe.so
-
 # Audio Firmware
 system_ext/lib/vendor.qti.hardware.audiohalext@1.0.so
 system_ext/lib64/vendor.qti.hardware.audiohalext@1.0.so
