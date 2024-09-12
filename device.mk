@@ -103,7 +103,11 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_OPTIONAL_vendor=true
 
 # Bluetooth
-PRODUCT_PACKAGES += libldacBT_bco
+PRODUCT_PACKAGES += \
+    libldacBT_bco \
+    android.hardware.bluetooth.audio-impl \
+    android.hardware.audio.sounddose-vendor-impl
+
 PRODUCT_SYSTEM_EXT_PROPERTIES += persist.vendor.btstack.enable.lpa=true
 
 # Camera
