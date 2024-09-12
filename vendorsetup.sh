@@ -21,14 +21,6 @@ case $choice in
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0002-soong-Add-TARGET_USES_EGL_DISPLAY_ARRAY-conditional.patch
         cd ../..
         echo -e
-        echo 'Applying patches to vendor/qcom/opensource/usb'
-        cd vendor/qcom/opensource/usb
-        git am --abort
-        git rebase --abort
-        git reset --hard FETCH_HEAD
-        git am ../../../../device/sony/pdx215/configs/patches/vendor_qcom_opensource_usb/0001-usb-Add-USB-inits-from-Xiaomi-lisa-DT.patch
-        cd ../../../..
-        echo -e
         echo 'Applying patches to frameworks/av'
         cd frameworks/av
         git am --abort
