@@ -1,0 +1,39 @@
+From cbc4316b57947d766191c1d0249716890ec695be Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Fri, 13 Sep 2024 15:50:48 +0000
+Subject: [PATCH] libstagefright: omx: Add support for loading prebuilt ddp and
+ ac4 decoder lib
+
+---
+ media/libstagefright/MediaCodecList.cpp    | 2 ++
+ media/libstagefright/omx/SoftOMXPlugin.cpp | 1 +
+ 2 files changed, 3 insertions(+)
+
+diff --git a/media/libstagefright/MediaCodecList.cpp b/media/libstagefright/MediaCodecList.cpp
+index 8906457..0dbec79 100644
+--- a/media/libstagefright/MediaCodecList.cpp
++++ b/media/libstagefright/MediaCodecList.cpp
+@@ -321,6 +321,8 @@ const sp<AMessage> MediaCodecList::getGlobalSettings() const {
+ //static
+ bool MediaCodecList::isSoftwareCodec(const AString &componentName) {
+     return componentName.startsWithIgnoreCase("OMX.google.")
++            || componentName.startsWithIgnoreCase("OMX.dolby.")
++            || componentName.startsWithIgnoreCase("c2.dolby.")
+             || componentName.startsWithIgnoreCase("c2.android.")
+             || (!componentName.startsWithIgnoreCase("OMX.")
+                     && !componentName.startsWithIgnoreCase("c2."));
+diff --git a/media/libstagefright/omx/SoftOMXPlugin.cpp b/media/libstagefright/omx/SoftOMXPlugin.cpp
+index 636e02a..7cff386 100644
+--- a/media/libstagefright/omx/SoftOMXPlugin.cpp
++++ b/media/libstagefright/omx/SoftOMXPlugin.cpp
+@@ -61,6 +61,7 @@ static const kComponent kComponents[] = {
+     { "OMX.dolby.ac3.decoder", "ddpdec", "audio_decoder.ac3" },
+     { "OMX.dolby.eac3-joc.decoder", "ddpdec", "audio_decoder.eac3_joc" },
+     { "OMX.dolby.eac3.decoder", "ddpdec", "audio_decoder.eac3" },
++    { "OMX.dolby.ac4.decoder", "ac4dec", "audio_decoder.ac4" },
+ };
+ 
+ static const kComponent kVendorComponents[] = {
+-- 
+2.43.0
+
