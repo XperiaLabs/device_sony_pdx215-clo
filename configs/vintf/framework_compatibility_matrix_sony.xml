@@ -75,7 +75,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
+    <hal format="aidl">
         <name>vendor.sony.charger</name>
         <version>1</version>
         <interface>
