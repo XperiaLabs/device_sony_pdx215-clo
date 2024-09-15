@@ -83,9 +83,9 @@
         <library name="bundle3" path="libbundlewrapper3.so"/>
         <library name="bundle4" path="libbundlewrapper4.so"/>
         <!-- Used for zoom noise reduction -->
-        <library name="znrwrapper" path="libznrwrapper.so"/>
+        <!-- library name="znrwrapper" path="libznrwrapper.so" -->
         <!-- Used for wind noise reduction -->
-        <library name="dnnr" path="libdnnrwrapper.so"/>
+        <!-- library name="dnnr" path="libdnnrwrapper.so" -->
         <!--DOLBY DAP-->
         <library name="dap" path="libswdap.so"/>
         <library name="dvl" path="libdlbvol.so"/>
@@ -176,15 +176,15 @@
         </stream>
         <stream type="mic">
         <!-- Used for wind noise reduction -->
-            <apply effect="DNNR"/>
+            <!-- apply effect="DNNR" -->
         <!-- Used for zoom noise reduction -->
-            <apply effect="ZNR"/>
+            <!-- apply effect="ZNR" -->
         </stream>
         <stream type="camcorder">
         <!-- Used for wind noise reduction -->
-            <apply effect="DNNR"/>
+            <!-- apply effect="DNNR" -->
         <!-- Used for zoom noise reduction -->
-            <apply effect="ZNR"/>
+            <!-- apply effect="ZNR" -->
         </stream>
     </preprocess>
 </audio_effects_conf>
