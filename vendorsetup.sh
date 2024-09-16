@@ -113,7 +113,7 @@ case $choice in
         cd system/sepolicy
         git am --abort
         git rebase --abort
-        git reset --hard something/uvite
+        git reset --hard m/uvite
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0001-sepolicy-Allow-ignoring-neverallows-on-user-builds.patch
         git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0002-Allow-Watchdog-to-dump-init.patch
