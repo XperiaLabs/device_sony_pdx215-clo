@@ -1,0 +1,1 @@
+require board=lahaina|pdx215|XQ-BC42|XQ-BC52|XQ-BC62|XQ-BC72|SO-51B|SOG03|A101S
