@@ -97,6 +97,7 @@ case $choice in
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0002-Settings-Comment-Color-Mode.patch
         cd ../../..
+        echo -e
         echo 'Applying patches to device/qcom/common'
         cd device/qcom/common
         git am --abort
@@ -107,6 +108,16 @@ case $choice in
         git reset --hard FETCH_HEAD
         git am ../../../device/sony/pdx215/configs/patches/device_qcom_common/0001-system-telephony-Build-older-radio-packages.patch
         cd ../../..
+        echo -e
+        echo 'Applying patches to system/sepolicy'
+        cd system/sepolicy
+        git am --abort
+        git rebase --abort
+        git reset --hard something/uvite
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0001-sepolicy-Allow-ignoring-neverallows-on-user-builds.patch
+        git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0002-Allow-Watchdog-to-dump-init.patch
+        cd ../..
         echo -e
         echo 'Done Applying all Patches!'
         echo -e

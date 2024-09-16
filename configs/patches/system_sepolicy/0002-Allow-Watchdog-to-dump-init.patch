@@ -1,0 +1,24 @@
+From 51bb3637c64eecab2262c321b3aff0e505146665 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Mon, 16 Sep 2024 04:33:17 +0000
+Subject: [PATCH] Allow Watchdog to dump init
+
+---
+ private/system_server.te | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/private/system_server.te b/private/system_server.te
+index aff4a0a..45a5201 100644
+--- a/private/system_server.te
++++ b/private/system_server.te
+@@ -374,6 +374,7 @@ allow system_server {
+   audioserver
+   cameraserver
+   drmserver
++  init
+   gpuservice
+   inputflinger
+   keystore
+-- 
+2.43.0
+

@@ -345,16 +345,8 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 include hardware/sony/sepolicy/qti/SEPolicy.mk
 
 # SELinux Neverallows
-ifdef SELINUX_IGNORE_NEVERALLOWS
-else
-ifeq ($(TARGET_BUILD_VARIANT),userdebug)
 SELINUX_IGNORE_NEVERALLOWS := true
-endif
-
-ifeq ($(TARGET_BUILD_VARIANT),eng)
-SELINUX_IGNORE_NEVERALLOWS := true
-endif
-endif
+SELINUX_IGNORE_NEVERALLOWS_ON_USER := true
 
 # UFS
 #namespace definition for librecovery_updater
