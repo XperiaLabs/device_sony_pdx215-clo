@@ -16,9 +16,8 @@ case $choice in
         cd vendor/aospa
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard penguin/unity
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0001-products-Introduce-Sony-Xperia-1-III-pdx215.patch
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0002-soong-Add-TARGET_USES_EGL_DISPLAY_ARRAY-conditional.patch
@@ -28,12 +27,11 @@ case $choice in
         cd frameworks/av
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard penguin/unity
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/frameworks_av/0001-Fixes-vtservice-cpu-hogging.patch
-        git am ../../device/sony/pdx215/configs/patches/frameworks_av/0002-libstagefright-omx-Add-support-for-loading-prebuilt.patch
+        git am ../../device/sony/pdx215/configs/patches/frameworks_av/0002-libstagefright-omx-Add-C2.dolby-ignore-case.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_av/0003-Add-AC4Tbl-params-for-dolby-AC4-decoder-1-2.patch
         cd ../..
         echo -e
@@ -41,9 +39,8 @@ case $choice in
         cd frameworks/base
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard penguin/unity
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-SystemUI-Follow-monet-theme-on-privacy-indicators.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0002-DisplayUtils-Introduce-getScaleFactor.patch
@@ -55,9 +52,8 @@ case $choice in
         cd frameworks/native
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard penguin/unity
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/frameworks_native/0001-EGL-Conditionally-revert-commit-a9550f3.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_native/0002-Add-AC4Tbl-params-for-dolby-AC4-decoder-2-2.patch
@@ -67,9 +63,7 @@ case $choice in
         cd hardware/libhardware
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/hardware_libhardware/0001-audio_amplifier-pass-amplifier_device-pointer-to-cal.patch
         cd ../..
@@ -90,9 +84,8 @@ case $choice in
         cd packages/apps/Settings
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard penguin/unity
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0002-Settings-Comment-Color-Mode.patch
@@ -102,9 +95,7 @@ case $choice in
         cd device/qcom/common
         git am --abort
         git rebase --abort
-        git reset --hard origin/uvite
-        git reset --hard m/uvite
-        git reset --hard aospa/uvite
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../../device/sony/pdx215/configs/patches/device_qcom_common/0001-system-telephony-Build-older-radio-packages.patch
         cd ../../..
@@ -113,7 +104,7 @@ case $choice in
         cd system/sepolicy
         git am --abort
         git rebase --abort
-        git reset --hard something/uvite
+        git reset --hard m/unity
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0001-sepolicy-Allow-ignoring-neverallows-on-user-builds.patch
         git am ../../device/sony/pdx215/configs/patches/system_sepolicy/0002-Allow-Watchdog-to-dump-init.patch
