@@ -1,0 +1,22 @@
+From 6bae7e2663b8f0406a5e95bf2b31e4c058f3797b Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Mon, 16 Sep 2024 20:29:28 +0000
+Subject: [PATCH] bootanimation: Copy Pixel 9 Bootanimation from the DT
+
+---
+ bootanimation/bootanimation.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/bootanimation/bootanimation.mk b/bootanimation/bootanimation.mk
+index 033824c..2f928d9 100644
+--- a/bootanimation/bootanimation.mk
++++ b/bootanimation/bootanimation.mk
+@@ -5,4 +5,4 @@
+ #
+ 
+ # Bootanimation
+-PRODUCT_COPY_FILES += vendor/aospa/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
++PRODUCT_COPY_FILES += device/sony/pdx215/configs/patches/vendor_aospa/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+-- 
+2.43.0
+

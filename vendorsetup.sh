@@ -21,6 +21,7 @@ case $choice in
         git reset --hard FETCH_HEAD
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0001-products-Introduce-Sony-Xperia-1-III-pdx215.patch
         git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0002-soong-Add-TARGET_USES_EGL_DISPLAY_ARRAY-conditional.patch
+        git am ../../device/sony/pdx215/configs/patches/vendor_aospa/0003-bootanimation-Copy-Pixel-9-Bootanimation-from-the-DT.patch
         cd ../..
         echo -e
         echo 'Applying patches to frameworks/av'
