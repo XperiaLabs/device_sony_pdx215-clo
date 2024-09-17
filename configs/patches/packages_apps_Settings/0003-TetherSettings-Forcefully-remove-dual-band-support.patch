@@ -1,0 +1,51 @@
+From b0f9e730fbceb0308fac07c73eddda159b8d8c40 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Wed, 18 Sep 2024 12:51:29 +0000
+Subject: [PATCH] TetherSettings: Forcefully remove dual band support
+
+---
+ res/xml/wifi_tether_settings.xml                         | 7 -------
+ .../tether/WifiTetherApBandPreferenceController.java     | 9 ---------
+ 2 files changed, 16 deletions(-)
+
+diff --git a/res/xml/wifi_tether_settings.xml b/res/xml/wifi_tether_settings.xml
+index d4e7570..8b81668 100644
+--- a/res/xml/wifi_tether_settings.xml
++++ b/res/xml/wifi_tether_settings.xml
+@@ -53,13 +53,6 @@
+         android:title="@string/wifi_hotspot_auto_off_title"
+         android:summary="@string/wifi_hotspot_auto_off_summary"/>
+ 
+-    <Preference
+-        android:key="wifi_hotspot_speed"
+-        android:title="@string/wifi_hotspot_speed_title"
+-        android:summary="@string/summary_placeholder"
+-        android:fragment="com.android.settings.wifi.tether.WifiHotspotSpeedSettings"
+-        settings:isPreferenceVisible="@bool/config_show_wifi_hotspot_speed"/>
+-
+     <Preference
+         android:key="wifi_hotspot_instant"
+         android:title="@string/wifi_hotspot_instant_title"
+diff --git a/src/com/android/settings/wifi/tether/WifiTetherApBandPreferenceController.java b/src/com/android/settings/wifi/tether/WifiTetherApBandPreferenceController.java
+index b56c97d..c29e5ce 100644
+--- a/src/com/android/settings/wifi/tether/WifiTetherApBandPreferenceController.java
++++ b/src/com/android/settings/wifi/tether/WifiTetherApBandPreferenceController.java
+@@ -203,15 +203,6 @@ public class WifiTetherApBandPreferenceController extends WifiTetherBasePreferen
+             bandEntries.add(String.valueOf(BAND_6GHZ));
+             bandSummaries.add(mContext.getString(R.string.wifi_ap_prefer_6G));
+         }
+-        // Add Dual AP bands
+-        if (is5GhzBandSupported()
+-                && (mWifiManager.isBridgedApConcurrencySupported() || isVendorLegacyDualBandSupported())
+-                && (config != null)
+-                && (config.getSecurityType() != SoftApConfiguration.SECURITY_TYPE_WPA3_OWE_TRANSITION
+-                    && config.getSecurityType() != SoftApConfiguration.SECURITY_TYPE_WPA3_OWE)) {
+-            bandEntries.add(String.valueOf(BAND_BOTH_2G_5G));
+-            bandSummaries.add(mContext.getString(R.string.wifi_ap_choose_vendor_dual_band));
+-        }
+ 
+         mBandEntries = bandEntries.toArray(new String[bandEntries.size()]);
+         mBandSummaries = bandSummaries.toArray(new String[bandSummaries.size()]);
+-- 
+2.43.0
+
