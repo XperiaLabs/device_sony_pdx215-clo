@@ -46,7 +46,6 @@ case $choice in
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0001-SystemUI-Follow-monet-theme-on-privacy-indicators.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0002-DisplayUtils-Introduce-getScaleFactor.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0003-SystemUI-Fix-SB-paddings.patch
-        git am ../../device/sony/pdx215/configs/patches/frameworks_base/0004-services-Introduce-X-reality-display-engine-mode-1-2.patch
         cd ../..
         echo -e
         echo 'Applying patches to frameworks/native'
