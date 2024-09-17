@@ -89,6 +89,7 @@ case $choice in
         git reset --hard FETCH_HEAD
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0002-Settings-Comment-Color-Mode.patch
+        git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0003-TetherSettings-Forcefully-remove-dual-band-support.patch
         cd ../../..
         echo -e
         echo 'Applying patches to device/qcom/common'

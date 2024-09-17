@@ -16,6 +16,9 @@
          is no longer indicative, and a separate config now exists for each band -->
     <bool name="config_wifi5ghzSupport">true</bool>
 
+    <!-- Wifi driver supports 5GHz band for softap when chip support 5GHz -->
+    <bool name="config_wifiSoftap5ghzSupported">true</bool>
+
     <!-- boolean indicating whether the WiFi chipset has 6GHz band support -->
     <bool name="config_wifi6ghzSupport">true</bool>
 
@@ -53,9 +56,6 @@
 
     <!-- Indicates that dynamic country code update in AP mode is supported on this device -->
     <bool name="config_wifiSoftApDynamicCountryCodeUpdateSupported">true</bool>
-
-    <!-- Wifi driver supports 5GHz band for softap when chip support 5GHz -->
-    <bool name="config_wifiSoftap5ghzSupported">true</bool>
 
     <!-- boolean indicating whether or not to reset hiddenSsid configuration during cloud configuration restore -->
     <bool name="config_wifiSoftapResetHiddenConfig">true</bool>
