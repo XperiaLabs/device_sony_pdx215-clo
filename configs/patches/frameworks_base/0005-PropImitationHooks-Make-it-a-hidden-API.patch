@@ -1,0 +1,27 @@
+From 59ca3e239bf63617c8982941aa423adbda293bb2 Mon Sep 17 00:00:00 2001
+From: Adithya R <gh0strider.2k18.reborn@gmail.com>
+Date: Sun, 1 Sep 2024 09:46:29 +0530
+Subject: [PATCH] PropImitationHooks: Make it a hidden API
+
+Change-Id: I271bc644444581565847d56766ca85bc7d272436
+---
+ core/java/com/android/internal/util/PropImitationHooks.java | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/core/java/com/android/internal/util/PropImitationHooks.java b/core/java/com/android/internal/util/PropImitationHooks.java
+index 523a0cd2e14a..658178242027 100644
+--- a/core/java/com/android/internal/util/PropImitationHooks.java
++++ b/core/java/com/android/internal/util/PropImitationHooks.java
+@@ -38,6 +38,9 @@ import java.util.Arrays;
+ import java.util.Map;
+ import java.util.Set;
+ 
++/**
++ * @hide
++ */
+ public class PropImitationHooks {
+ 
+     private static final String TAG = "PropImitationHooks";
+-- 
+2.43.0
+

@@ -1,0 +1,72 @@
+From 23841c214f2172663bfe2a0f9588daa0d497d293 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Thu, 19 Sep 2024 03:01:01 +0000
+Subject: [PATCH] PropImitationHooks: Allow user to disable prop imitation
+
+---
+ .../internal/util/PropImitationHooks.java     | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/core/java/com/android/internal/util/PropImitationHooks.java b/core/java/com/android/internal/util/PropImitationHooks.java
+index 97eda93a..523a0cd2 100644
+--- a/core/java/com/android/internal/util/PropImitationHooks.java
++++ b/core/java/com/android/internal/util/PropImitationHooks.java
+@@ -43,6 +43,12 @@ public class PropImitationHooks {
+     private static final String TAG = "PropImitationHooks";
+     private static final boolean DEBUG = SystemProperties.getBoolean("debug.pihooks.log", false);
+ 
++    private static final Boolean sDisableGmsProps = SystemProperties.getBoolean(
++            "persist.sys.pihooks.disable.gms_props", false);
++
++    private static final Boolean sDisableKeyAttestationBlock = SystemProperties.getBoolean(
++            "persist.sys.pihooks.disable.gms_key_attestation_block", false);
++
+     private static final String PACKAGE_AIWALLPAPERS = "com.google.android.apps.aiwallpapers";
+     private static final String PACKAGE_ARCORE = "com.google.ar.core";
+     private static final String PACKAGE_ASSISTANT = "com.google.android.apps.googleassistant";
+@@ -216,10 +222,19 @@ public class PropImitationHooks {
+     }
+ 
+     private static void setCertifiedPropsForGms() {
++        if (sDisableGmsProps) {
++            dlog("GMS prop imitation is disabled by user");
++            setSystemProperty(PROP_SECURITY_PATCH, Build.VERSION.SECURITY_PATCH);
++            setSystemProperty(PROP_FIRST_API_LEVEL,
++                    Integer.toString(Build.VERSION.DEVICE_INITIAL_SDK_INT));
++            return;
++        }
++
+         if (sCertifiedProps.length == 0) {
+             dlog("Certified props are not set");
+             return;
+         }
++
+         final boolean was = isGmsAddAccountActivityOnTop();
+         final TaskStackListener taskStackListener = new TaskStackListener() {
+             @Override
+@@ -282,6 +297,10 @@ public class PropImitationHooks {
+     }
+ 
+     public static boolean shouldBypassTaskPermission(Context context) {
++        if (sDisableGmsProps) {
++            return false;
++        }
++
+         // GMS doesn't have MANAGE_ACTIVITY_TASKS permission
+         final int callingUid = Binder.getCallingUid();
+         final int gmsUid;
+@@ -301,6 +320,11 @@ public class PropImitationHooks {
+     }
+ 
+     public static void onEngineGetCertificateChain() {
++        if (sDisableKeyAttestationBlock) {
++            dlog("Key attestation blocking is disabled by user");
++            return;
++        }
++
+         // Check stack for SafetyNet or Play Integrity
+         if (isCallerSafetyNet() || sIsFinsky) {
+             dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
+-- 
+2.43.0
+
