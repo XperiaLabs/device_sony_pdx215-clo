@@ -2,6 +2,10 @@
 
 The Xperia 1 III (Codenamed "pdx215") is a flagship smartphone from Sony released in August 2021 running on the QRD8350 (codenamed _"lahaina"_) chipset.
 
+## Warning!
+The following models should **NOT**, under **ANY** circumstance be locked on a custom ROM because you will **NOT** be able to unlock them again!!!
+### SO-51B, SOG03, A101SO
+
 ## Device Specifications
 
 | Feature                 | Specification                                                                       |
@@ -29,7 +33,6 @@ The Xperia 1 III (Codenamed "pdx215") is a flagship smartphone from Sony release
 # SPDX-License-Identifier: Apache-2.0
 #
 ```
-
 
 ## Device Picture
 
