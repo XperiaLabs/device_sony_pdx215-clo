@@ -23,3 +23,14 @@ cc_library_static {
         "system/libbase/include"
     ]
 }
+
+cc_library_static {
+    name: "libinit_pdx215_locked",
+    srcs: ["init_pdx215_locked.cpp"],
+    whole_static_libs: ["libbase"],
+    recovery_available: true,
+    include_dirs: [
+        "system/core/init",
+        "system/libbase/include"
+    ]
+}
