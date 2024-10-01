@@ -326,7 +326,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     perf \
     telephony \
     usb \
-    vibrator \
     wfd
 
 PRODUCT_PACKAGES += \
@@ -423,6 +422,9 @@ PRODUCT_PACKAGES += libstdc++_vendor
 
 # Vendor Service Manager
 PRODUCT_PACKAGES += vndservicemanager
+
+# Vibrator
+PRODUCT_PACKAGES += android.hardware.vibrator-sony.service.cs40l25
 
 # QTI Service Tracker
 PRODUCT_PACKAGES += \
