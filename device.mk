@@ -473,6 +473,7 @@ TARGET_SHIPS_SONY_CAMERA := true
 TARGET_SHIPS_PHOTO_PRO_LEGACY := true
 TARGET_SUPPORTS_XPERIA_STREAM := true
 TARGET_SUPPORTS_GAME_CONTROLLERS := true
+TARGET_SHIPS_SIDE_SENSE := true
 TARGET_SHIPS_XPERIA_LWP_CINEMAWIDE := true
 
 # Xperia Modules | Xperia Extras - Shared Flags (hardware_sony & vendor_sony_extra)
