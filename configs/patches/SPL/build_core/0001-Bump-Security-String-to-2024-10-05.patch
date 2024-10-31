@@ -1,0 +1,45 @@
+From 7cb93a6facb7f0aad3e1d97526a1271d8bbaf4f9 Mon Sep 17 00:00:00 2001
+From: saku-bruh <saku-bruh@proton.me>
+Date: Thu, 31 Oct 2024 05:54:09 +0000
+Subject: [PATCH] Bump Security String to 2024-10-05
+
+Implemented:
+============
+CVE:            References:    Type:  Severity:  Updated AOSP versions:
+CVE-2024-0044   A-307532206    EoP    High       12, 12L, 13, 14, 15
+CVE-2024-40672  A-327645387    EoP    High       12, 12L, 13, 14
+CVE-2024-40673  A-309938635    RCE    High       12, 12L, 13, 14
+CVE-2024-40674  A-343714914    DoS    High       14
+CVE-2024-40675  A-318683126    DoS    High       12, 12L, 13, 14
+CVE-2024-40676  A-349780950    EoP    High       12, 12L, 13, 14, 15
+CVE-2024-40677  A-327748846    EoP    High       12, 12L, 13, 14, 15
+
+Not Implemented:
+================
+None
+
+Not Applicable (platform source):
+=================================
+None
+
+Change-Id: I03ec9b2bde34cfd193b629e9aa52227365da50b1
+---
+ core/version_defaults.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/version_defaults.mk b/core/version_defaults.mk
+index 45fbf1b..5b4bf16 100644
+--- a/core/version_defaults.mk
++++ b/core/version_defaults.mk
+@@ -113,7 +113,7 @@ ifndef PLATFORM_SECURITY_PATCH
+     #  It must be of the form "YYYY-MM-DD" on production devices.
+     #  It must match one of the Android Security Patch Level strings of the Public Security Bulletins.
+     #  If there is no $PLATFORM_SECURITY_PATCH set, keep it empty.
+-    PLATFORM_SECURITY_PATCH := 2024-09-05
++    PLATFORM_SECURITY_PATCH := 2024-10-05
+ endif
+ 
+ include $(BUILD_SYSTEM)/version_util.mk
+-- 
+2.43.0
+

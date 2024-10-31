@@ -49,6 +49,30 @@ case $choice in
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0004-PropImitationHooks-Allow-user-to-disable-prop-imitat.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0005-PropImitationHooks-Make-it-a-hidden-API.patch
         git am ../../device/sony/pdx215/configs/patches/frameworks_base/0006-Initial-implementation-of-KeyboxImitationHooks.patch
+        git am ../../device/sony/pdx215/configs/patches/SPL/frameworks_base/0001-Reset-all-package-signatures-on-boot-once.patch
+        git am ../../device/sony/pdx215/configs/patches/SPL/frameworks_base/0002-Update-AccountManagerService-checkKeyIntent.patch
+        git am ../../device/sony/pdx215/configs/patches/SPL/frameworks_base/0003-Check-whether-installerPackageName-contains-only-val.patch
+        git am ../../device/sony/pdx215/configs/patches/SPL/frameworks_base/0004-Fail-parseUri-if-end-is-missing.patch
+        cd ../..
+        echo -e
+        echo 'Applying patches to build/core'
+        cd build/core
+        git am --abort
+        git rebase --abort
+        git reset --hard penguin/unity
+        git reset --hard m/unity
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/SPL/build_core/0001-Bump-Security-String-to-2024-10-05.patch
+        cd ../..
+        echo -e
+        echo 'Applying patches to packages/modules/Wifi'
+        cd packages/modules/Wifi
+        git am --abort
+        git rebase --abort
+        git reset --hard penguin/unity
+        git reset --hard m/unity
+        git reset --hard FETCH_HEAD
+        git am ../../device/sony/pdx215/configs/patches/SPL/packages_modules_Wifi/0001-Add-plaintext-WifiConfig-SSID-length-check.patch
         cd ../..
         echo -e
         echo 'Applying patches to frameworks/native'
@@ -93,6 +117,7 @@ case $choice in
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0001-Settings-Remove-VRR.patch
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0002-Settings-Comment-Color-Mode.patch
         git am ../../../device/sony/pdx215/configs/patches/packages_apps_Settings/0003-TetherSettings-Forcefully-remove-dual-band-support.patch
+        git am ../../../device/sony/pdx215/configs/patches/SPL/packages_apps_Settings/0001-RESTRICT-AUTOMERGE-FRP-bypass-defense-in-App-battery.patch
         cd ../../..
         echo -e
         echo 'Applying patches to device/qcom/common'

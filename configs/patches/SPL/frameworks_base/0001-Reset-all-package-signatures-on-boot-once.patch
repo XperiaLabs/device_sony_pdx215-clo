@@ -1,0 +1,116 @@
+From f90c51f5d14bda4395ae088baced8c2f0458cf0b Mon Sep 17 00:00:00 2001
+From: Jake Weinstein <jake@aospa.co>
+Date: Thu, 10 Nov 2022 15:43:32 +0900
+Subject: [PATCH 1/4] Reset all package signatures on boot once
+
+Resets package signatures without wiping data.
+
+Based on the commit below from Sam Mortimer at LineageOS,
+but refactored for Android 13 as Google moved most code
+outside PackageManagerService. We also use a property,
+ro.persist.sys.signatures.reset, to make sure this
+only happens once instead of occurring every boot.
+
+Reset all package signatures on boot
+
+Can be used to make a special build that resets all
+package signatures without wiping any data.
+
+Change-Id: Iff65f2ed3c9d0f80be7221ff90803eda4732cac0
+
+Change-Id: I526b9f155c238a946181023cd16d07e0b6cd9430
+Co-Authored-By: Sam Mortimer <sam@mortimer.me.uk>
+Co-Authored-By: Anay Wadhera <anay@aospa.co>
+---
+ .../java/com/android/server/pm/InitAppsHelper.java    |  3 +++
+ .../com/android/server/pm/InstallPackageHelper.java   | 11 ++++++++++-
+ .../com/android/server/pm/PackageManagerService.java  |  2 ++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/pm/InitAppsHelper.java b/services/core/java/com/android/server/pm/InitAppsHelper.java
+index 5c4447eb99a4..435d69b4edbe 100644
+--- a/services/core/java/com/android/server/pm/InitAppsHelper.java
++++ b/services/core/java/com/android/server/pm/InitAppsHelper.java
+@@ -28,6 +28,7 @@ import static com.android.server.pm.PackageManagerService.SCAN_FIRST_BOOT_OR_UPG
+ import static com.android.server.pm.PackageManagerService.SCAN_INITIAL;
+ import static com.android.server.pm.PackageManagerService.SCAN_NO_DEX;
+ import static com.android.server.pm.PackageManagerService.SCAN_REQUIRE_KNOWN;
++import static com.android.server.pm.PackageManagerService.SIGNATURE_RESET_PROP;
+ import static com.android.server.pm.PackageManagerService.SYSTEM_PARTITIONS;
+ import static com.android.server.pm.PackageManagerService.TAG;
+ import static com.android.server.pm.pkg.parsing.ParsingPackageUtils.PARSE_APK_IN_APEX;
+@@ -36,6 +37,7 @@ import android.annotation.NonNull;
+ import android.annotation.Nullable;
+ import android.os.Environment;
+ import android.os.SystemClock;
++import android.os.SystemProperties;
+ import android.os.Trace;
+ import android.system.ErrnoException;
+ import android.system.Os;
+@@ -267,6 +269,7 @@ final class InitAppsHelper {
+         fixSystemPackages(userIds);
+         logNonSystemAppScanningTime(startTime);
+         mExpectingBetter.clear();
++        SystemProperties.set(SIGNATURE_RESET_PROP, "1");
+         mPm.mSettings.pruneRenamedPackagesLPw();
+     }
+ 
+diff --git a/services/core/java/com/android/server/pm/InstallPackageHelper.java b/services/core/java/com/android/server/pm/InstallPackageHelper.java
+index 7312b4282d74..6ccdc48248ab 100644
+--- a/services/core/java/com/android/server/pm/InstallPackageHelper.java
++++ b/services/core/java/com/android/server/pm/InstallPackageHelper.java
+@@ -87,6 +87,7 @@ import static com.android.server.pm.PackageManagerService.SCAN_NEW_INSTALL;
+ import static com.android.server.pm.PackageManagerService.SCAN_NO_DEX;
+ import static com.android.server.pm.PackageManagerService.SCAN_REQUIRE_KNOWN;
+ import static com.android.server.pm.PackageManagerService.SCAN_UPDATE_SIGNATURE;
++import static com.android.server.pm.PackageManagerService.SIGNATURE_RESET_PROP;
+ import static com.android.server.pm.PackageManagerService.TAG;
+ import static com.android.server.pm.PackageManagerServiceUtils.comparePackageSignatures;
+ import static com.android.server.pm.PackageManagerServiceUtils.compareSignatures;
+@@ -247,6 +248,7 @@ final class InstallPackageHelper {
+      * Map of package name to its path on the file system.
+      */
+     final private HashMap<String, String> mPackagesToBeDisabled = new HashMap<>();
++    private boolean mResetSignatures;
+ 
+     /**
+      * Tracks packages that need to be disabled for QSPA enabled taregts.
+@@ -1372,7 +1374,13 @@ final class InstallPackageHelper {
+                 final KeySetManagerService ksms = mPm.mSettings.getKeySetManagerService();
+                 final SharedUserSetting signatureCheckSus = mPm.mSettings.getSharedUserSettingLPr(
+                         signatureCheckPs);
+-                if (ksms.shouldCheckUpgradeKeySetLocked(signatureCheckPs, signatureCheckSus,
++                SharedUserSetting sharedUserSetting = mPm.mSettings.getSharedUserSettingLPr(parsedPackage.getPackageName());
++                if (mResetSignatures) {
++                    Slog.d(TAG, "resetting signatures on package " + parsedPackage.getPackageName());
++                    if (sharedUserSetting != null) {
++                        sharedUserSetting.signatures.mSigningDetails = parsedPackage.getSigningDetails();
++                    }
++                } else if (ksms.shouldCheckUpgradeKeySetLocked(signatureCheckPs, signatureCheckSus,
+                         scanFlags)) {
+                     if (!ksms.checkUpgradeKeySetLocked(signatureCheckPs, parsedPackage)) {
+                         throw new PrepareFailure(INSTALL_FAILED_UPDATE_INCOMPATIBLE, "Package "
+@@ -1808,6 +1816,7 @@ final class InstallPackageHelper {
+                     final boolean product = oldPackageState.isProduct();
+                     final boolean odm = oldPackageState.isOdm();
+                     final boolean systemExt = oldPackageState.isSystemExt();
++                    mResetSignatures = SystemProperties.getBoolean(SIGNATURE_RESET_PROP, true);
+                     final @ParsingPackageUtils.ParseFlags int systemParseFlags = parseFlags;
+                     final @PackageManagerService.ScanFlags int systemScanFlags = scanFlags
+                             | SCAN_AS_SYSTEM
+diff --git a/services/core/java/com/android/server/pm/PackageManagerService.java b/services/core/java/com/android/server/pm/PackageManagerService.java
+index d509025c487f..2ce29be68d15 100644
+--- a/services/core/java/com/android/server/pm/PackageManagerService.java
++++ b/services/core/java/com/android/server/pm/PackageManagerService.java
+@@ -572,6 +572,8 @@ public class PackageManagerService implements PackageSender, TestUtilityService
+      */
+     public static final int MIN_INSTALLABLE_TARGET_SDK = Build.VERSION_CODES.M;
+ 
++    public static final String SIGNATURE_RESET_PROP = "ro.persist.sys.signatures.reset";
++
+     // Compilation reasons.
+     // TODO(b/260124949): Clean this up with the legacy dexopt code.
+     public static final int REASON_FIRST_BOOT = 0;
+-- 
+2.43.0
+
