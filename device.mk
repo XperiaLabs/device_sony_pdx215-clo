@@ -387,6 +387,8 @@ PRODUCT_PACKAGES += \
 
 # Sony Charger Interface
 PRODUCT_PACKAGES += \
+    vendor.semc.hardware.charger@1.0.vendor \
+    vendor.semc.hardware.charger@1.1.vendor \
     vendor.sony.charger \
     vendor.sony.charger-service
 
